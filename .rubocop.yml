@@ -1,0 +1,20 @@
+---
+require:
+  - rubocop-performance
+  - rubocop-rake
+  - rubocop-rspec
+
+AllCops:
+  DisplayStyleGuide: true
+  NewCops: enable
+  TargetRubyVersion: 2.6
+
+# Disable block-length check for rspec and gemspec
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*.rb'
+    - '*.gemspec'
+
+# Extend permitted line length
+Layout/LineLength:
+  Max: 120
