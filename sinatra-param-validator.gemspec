@@ -27,6 +27,12 @@ Gem::Specification.new do |spec|
   end
   spec.require_paths = ['lib']
 
-  # Uncomment to register a new dependency of your gem
-  # spec.add_dependency "example-gem", "~> 1.0"
+  spec.add_development_dependency 'rack-test', '~> 1.1'
+  spec.add_development_dependency 'rake', '~> 13.0'
+  spec.add_development_dependency 'rspec', '~> 3.0'
+  spec.add_development_dependency 'rubocop', '~> 1.0'
+  spec.add_development_dependency 'rubocop-performance', '~> 1.0'
+  spec.add_development_dependency 'rubocop-rake', '~> 0.5'
+  spec.add_development_dependency 'rubocop-rspec', '~> 2.0'
+  spec.add_development_dependency 'sinatra-contrib', '~> 2.0'
 end
