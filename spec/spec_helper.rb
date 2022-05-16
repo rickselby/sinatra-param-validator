@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/params_validator'
+require 'sinatra/param_validator'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure

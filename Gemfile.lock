@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    sinatra-params-validator (0.1.0)
+    sinatra-param-validator (0.1.0)
 
 GEM
   remote: https://rubygems.org/
@@ -59,7 +59,7 @@ DEPENDENCIES
   rubocop-performance (~> 1.0)
   rubocop-rake (~> 0.5)
   rubocop-rspec (~> 2.0)
-  sinatra-params-validator!
+  sinatra-param-validator!
 
 BUNDLED WITH
    2.3.13
