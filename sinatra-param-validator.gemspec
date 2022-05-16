@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require_relative 'lib/sinatra/param_validator'
+require_relative 'lib/sinatra/param_validator/version'
 
 Gem::Specification.new do |spec|
   spec.name = 'sinatra-param-validator'
