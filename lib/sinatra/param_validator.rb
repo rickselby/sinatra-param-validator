@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require_relative 'param_validator/definitions'
+require_relative 'param_validator/parser'
 require_relative 'param_validator/version'
 
 module Sinatra
@@ -15,7 +16,7 @@ module Sinatra
     end
 
     def run
-      # TODO
+      Parser.parse(@definition)
     end
   end
 end
