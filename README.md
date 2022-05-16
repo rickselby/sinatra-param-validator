@@ -1,15 +1,15 @@
-# Sinatra::Params::Validator
+# Sinatra::Param::Validator
 
 
 ## Installation
 
 Install the gem and add to the application's Gemfile by executing:
 
-    $ bundle add sinatra-params-validator
+    $ bundle add sinatra-param-validator
 
 If bundler is not being used to manage dependencies, install the gem by executing:
 
-    $ gem install sinatra-params-validator
+    $ gem install sinatra-param-validator
 
 ## Usage
 
@@ -26,7 +26,7 @@ and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 
-Bug reports and pull requests are welcome on GitHub at https://github.com/rickselby/sinatra-params-validator.
+Bug reports and pull requests are welcome on GitHub at https://github.com/rickselby/sinatra-param-validator.
 
 ## License
 

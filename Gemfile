@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-# Specify your gem's dependencies in sinatra-params_validator-validator.gemspec
+# Specify your gem's dependencies in sinatra-param_validator-validator.gemspec
 gemspec
 
 gem 'rake', '~> 13.0'
