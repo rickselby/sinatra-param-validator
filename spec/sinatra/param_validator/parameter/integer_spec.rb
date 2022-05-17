@@ -80,4 +80,28 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
       it { is_expected.to be true }
     end
   end
+
+  describe 'max' do
+    let(:options) { { max: 200 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid maximum' do
+      let(:options) { { max: 100 } }
+
+      it { is_expected.to be false }
+    end
+  end
+
+  describe 'min' do
+    let(:options) { { min: 100 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid minimum' do
+      let(:options) { { min: 200 } }
+
+      it { is_expected.to be false }
+    end
+  end
 end

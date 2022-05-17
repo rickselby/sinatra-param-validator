@@ -8,6 +8,7 @@ module Sinatra
       # Validation for integers
       class Integer
         include Common
+        include CommonNumeric
 
         def coerce
           return nil if @value.nil?

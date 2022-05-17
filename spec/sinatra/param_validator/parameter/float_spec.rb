@@ -80,4 +80,28 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Float do
       it { is_expected.to be true }
     end
   end
+
+  describe 'max' do
+    let(:options) { { max: 20 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid maximum' do
+      let(:options) { { max: 10 } }
+
+      it { is_expected.to be false }
+    end
+  end
+
+  describe 'min' do
+    let(:options) { { min: 10 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid minimum' do
+      let(:options) { { min: 20 } }
+
+      it { is_expected.to be false }
+    end
+  end
 end
