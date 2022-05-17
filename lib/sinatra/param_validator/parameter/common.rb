@@ -7,11 +7,11 @@ module Sinatra
       module Common
         attr_reader :coerced, :errors
 
-        def initialize(value, **kwargs)
+        def initialize(value, **options)
           @errors = []
           @coerced = coerce value
 
-          validate(kwargs)
+          validate(options)
         end
 
         def valid?

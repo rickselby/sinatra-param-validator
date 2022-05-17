@@ -20,9 +20,9 @@ module Sinatra
         instance_exec({}, &definition)
       end
 
-      def param(*args)
-        parameter = Parameter.new(@context.params[args[0]], *args[1..])
-        @context.params[args[0]] = parameter.coerced
+      def param(key, type, args)
+        parameter = Parameter.new(@context.params[key], type, **args)
+        @context.params[key] = parameter.coerced
         @errors.push(parameter.errors) unless parameter.valid?
       end
     end
