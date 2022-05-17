@@ -1,10 +1,11 @@
 # frozen_string_literal: true
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     # Helpers for validating parameters
     module Helpers
-      def validate(validator, args = {})
+      def validate(identifier, args = {})
+        validator = Definitions.get(identifier)
         validator.context = self
         validator.run(*args)
         validator.handle_failure unless validator.success?

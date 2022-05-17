@@ -2,7 +2,7 @@
 
 RSpec.describe Sinatra::ParamValidator, '.define' do
   subject(:validator) do
-    described_class.define :identifier do
+    Sinatra::ParamValidator::Validator.new do
       param :boolean, :boolean, required: true
       param :date, Date, required: true
       param :float, Float, required: true

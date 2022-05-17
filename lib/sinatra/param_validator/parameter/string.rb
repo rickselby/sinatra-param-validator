@@ -3,7 +3,7 @@
 require_relative 'common'
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     class Parameter
       # Validation for strings
       class String

@@ -7,7 +7,7 @@ require_relative 'parameter/integer'
 require_relative 'parameter/string'
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     # Class to validate a single parameter
     class Parameter
       def self.new(value, type, **args)

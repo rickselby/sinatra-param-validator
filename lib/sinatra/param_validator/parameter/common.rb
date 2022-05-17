@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     class Parameter
       # Validation for integers
       module Common

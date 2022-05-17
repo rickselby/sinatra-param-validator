@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     # Store of valid definitions
     module Definitions
       @definitions = {}

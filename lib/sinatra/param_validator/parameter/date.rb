@@ -4,7 +4,7 @@ require 'date'
 require_relative 'common'
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     class Parameter
       # Validation for integers
       class Date
