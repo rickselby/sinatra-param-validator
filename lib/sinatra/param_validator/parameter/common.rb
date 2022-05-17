@@ -5,11 +5,11 @@ module Sinatra
     class Parameter
       # Validation for integers
       module Common
-        attr_reader :errors, :value
+        attr_reader :coerced, :errors
 
         def initialize(value, **kwargs)
           @errors = []
-          @value = value
+          @coerced = coerce value
 
           validate(kwargs)
         end
@@ -34,20 +34,20 @@ module Sinatra
         def in?(options)
           case options
           when Range
-            options.include? @value
+            options.include? @coerced
           else
-            Array(options).include? @value
+            Array(options).include? @coerced
           end
         end
         private :in?
 
         def is(option_value)
-          @errors.push "Parameter must be #{option_value}" unless @value == option_value
+          @errors.push "Parameter must be #{option_value}" unless @coerced == option_value
         end
         private :is
 
         def required(enabled)
-          @errors.push 'Parameter is required' if enabled && @value.nil?
+          @errors.push 'Parameter is required' if enabled && @coerced.nil?
         end
         private :required
       end
@@ -55,12 +55,12 @@ module Sinatra
       # min/max tests
       module CommonMinMax
         def max(maximum)
-          @errors.push "Parameter cannot be greater than #{maximum}" unless @value.nil? || @value <= maximum
+          @errors.push "Parameter cannot be greater than #{maximum}" unless @coerced.nil? || @coerced <= maximum
         end
         private :max
 
         def min(minimum)
-          @errors.push "Parameter cannot be less than #{minimum}" unless @value.nil? || @value >= minimum
+          @errors.push "Parameter cannot be less than #{minimum}" unless @coerced.nil? || @coerced >= minimum
         end
         private :min
       end

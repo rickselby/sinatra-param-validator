@@ -9,10 +9,10 @@ module Sinatra
       class Boolean
         include Common
 
-        def coerce
-          return nil if @value.nil?
+        def coerce(value)
+          return nil if value.nil?
 
-          case @value.to_s
+          case value.to_s
           when /^(false|f|no|n|0)$/i then false
           when /^(true|t|yes|y|1)$/i then true
           else raise ArgumentError

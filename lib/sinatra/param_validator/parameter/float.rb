@@ -10,10 +10,10 @@ module Sinatra
         include Common
         include CommonMinMax
 
-        def coerce
-          return nil if @value.nil?
+        def coerce(value)
+          return nil if value.nil?
 
-          Float(@value)
+          Float(value)
         end
       end
     end

@@ -5,10 +5,10 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Date do
 
   let(:klass) { described_class.new(value, options) }
   let(:options) { {} }
-  let(:value) { Date.new(2022, 5, 17) }
+  let(:value) { Date.new(2022, 5, 17).to_s }
 
   describe 'coerce' do
-    subject(:coerce) { klass.coerce }
+    subject(:coerce) { klass.coerced }
 
     ['2022-05-17', '20220517', '17th May 2022', '17-05-2022'].each do |date|
       context "with the string #{date}" do
@@ -72,12 +72,6 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Date do
       let(:value) { nil }
 
       it { is_expected.to be false }
-    end
-
-    context 'with zero' do
-      let(:value) { 0 }
-
-      it { is_expected.to be true }
     end
   end
 

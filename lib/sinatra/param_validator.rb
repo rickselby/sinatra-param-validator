@@ -26,16 +26,7 @@ module Sinatra
     end
 
     def run
-      Parser.parse(@definition).each do |definition|
-        command = case definition[:command]
-                  when :param
-                    Parameter.new(@context.params[definition[:args][0]], *definition[:args][1..])
-                  else
-                    raise "Unknown command #{definition[:command]}"
-                  end
-
-        @errors.push(command.errors) unless command.valid?
-      end
+      @errors = Parser.parse(@definition, @context).errors
     end
 
     def success?
