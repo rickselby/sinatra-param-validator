@@ -8,7 +8,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::String do
   let(:value) { 'string' }
 
   describe 'coerce' do
-    subject(:coerce) { klass.coerce }
+    subject(:coerce) { klass.coerced }
 
     [123, -456, 78.9].each do |number|
       context "with the number #{number}" do

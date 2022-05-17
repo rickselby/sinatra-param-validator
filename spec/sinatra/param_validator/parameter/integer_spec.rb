@@ -5,10 +5,10 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
 
   let(:klass) { described_class.new(value, options) }
   let(:options) { {} }
-  let(:value) { 123 }
+  let(:value) { '123' }
 
   describe 'coerce' do
-    subject(:coerce) { klass.coerce }
+    subject(:coerce) { klass.coerced }
 
     %w[123 -456].each do |number|
       context "with the string #{number}" do
@@ -75,7 +75,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
     end
 
     context 'with zero' do
-      let(:value) { 0 }
+      let(:value) { '0' }
 
       it { is_expected.to be true }
     end

@@ -9,20 +9,20 @@ module Sinatra
       class String
         include Common
 
-        def coerce
-          return nil if @value.nil?
+        def coerce(value)
+          return nil if value.nil?
 
-          String(@value)
+          String(value)
         end
 
         private
 
         def blank(enabled)
-          @errors.push 'Parameter cannot be blank' if !enabled && !@value&.match?(/\S/)
+          @errors.push 'Parameter cannot be blank' if !enabled && !@coerced&.match?(/\S/)
         end
 
         def format(format_string)
-          @errors.push "Parameter must match the format #{format_string}" unless @value&.match?(format_string)
+          @errors.push "Parameter must match the format #{format_string}" unless @coerced&.match?(format_string)
         end
       end
     end

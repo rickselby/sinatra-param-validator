@@ -5,10 +5,10 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Float do
 
   let(:klass) { described_class.new(value, options) }
   let(:options) { {} }
-  let(:value) { 12.34 }
+  let(:value) { '12.34' }
 
   describe 'coerce' do
-    subject(:coerce) { klass.coerce }
+    subject(:coerce) { klass.coerced }
 
     %w[123 -456 78.9].each do |number|
       context "with the string #{number}" do

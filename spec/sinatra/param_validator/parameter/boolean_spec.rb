@@ -5,10 +5,10 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
 
   let(:klass) { described_class.new(value, options) }
   let(:options) { {} }
-  let(:value) { true }
+  let(:value) { 'true' }
 
   describe 'coerce' do
-    subject(:coerce) { klass.coerce }
+    subject(:coerce) { klass.coerced }
 
     %w[false f no n 0].each do |string|
       context "with the string #{string}" do
@@ -68,12 +68,6 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
       let(:value) { nil }
 
       it { is_expected.to be false }
-    end
-
-    context 'with an empty value' do
-      let(:value) { '' }
-
-      it { is_expected.to be true }
     end
   end
 end
