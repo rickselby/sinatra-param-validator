@@ -52,8 +52,8 @@ module Sinatra
         private :required
       end
 
-      # Common tests for numeric types
-      module CommonNumeric
+      # min/max tests
+      module CommonMinMax
         def max(maximum)
           @errors.push "Parameter cannot be greater than #{maximum}" unless @value.nil? || @value <= maximum
         end
