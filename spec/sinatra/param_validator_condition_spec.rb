@@ -20,7 +20,7 @@ describe Sinatra::ParamValidator do
   end
 
   it 'returns OK for valid numbers' do
-    post '/', { number: '10'}
+    post '/', { number: '10' }
     expect(last_response).to be_ok
   end
 
