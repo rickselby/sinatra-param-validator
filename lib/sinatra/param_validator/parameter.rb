@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'parameter/float'
 require_relative 'parameter/integer'
 require_relative 'parameter/string'
 
