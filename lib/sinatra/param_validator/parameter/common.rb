@@ -12,6 +12,8 @@ module Sinatra
           @coerced = coerce value
 
           validate(options)
+        rescue ArgumentError
+          @errors.push "'#{value}' is not a valid #{self.class}"
         end
 
         def valid?
