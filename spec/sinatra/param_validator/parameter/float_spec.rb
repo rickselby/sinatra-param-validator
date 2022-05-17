@@ -1,20 +1,20 @@
 # frozen_string_literal: true
 
-RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
+RSpec.describe Sinatra::ParamValidator::Parameter::Float do
   subject(:valid) { klass.valid? }
 
   let(:klass) { described_class.new(value, options) }
   let(:options) { {} }
-  let(:value) { 123 }
+  let(:value) { 12.34 }
 
   describe 'coerce' do
     subject(:coerce) { klass.coerce }
 
-    %w[123 -456].each do |number|
+    %w[123 -456 78.9].each do |number|
       context "with the string #{number}" do
         let(:value) { number }
 
-        it { is_expected.to eq Integer(number, 10) }
+        it { is_expected.to eq Float(number) }
       end
     end
 
@@ -28,19 +28,19 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
   end
 
   describe 'is' do
-    let(:options) { { is: 123 } }
+    let(:options) { { is: 12.34 } }
 
     it { is_expected.to be true }
 
     context 'with an invalid option' do
-      let(:options) { { is: 456 } }
+      let(:options) { { is: 1.23 } }
 
       it { is_expected.to be false }
     end
   end
 
   describe 'in' do
-    let(:options) { { in: [123, 456, 789] } }
+    let(:options) { { in: [12.34, 56.78] } }
 
     it { is_expected.to be true }
 
@@ -51,13 +51,13 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
     end
 
     context 'with a valid range' do
-      let(:options) { { in: 100..200 } }
+      let(:options) { { in: 10..20 } }
 
       it { is_expected.to be true }
     end
 
     context 'with an invalid range' do
-      let(:options) { { in: 200..300 } }
+      let(:options) { { in: 20..30 } }
 
       it { is_expected.to be false }
     end
@@ -75,7 +75,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
     end
 
     context 'with zero' do
-      let(:value) { 0 }
+      let(:value) { 0.0 }
 
       it { is_expected.to be true }
     end
