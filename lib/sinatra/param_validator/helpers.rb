@@ -6,8 +6,7 @@ module Sinatra
     module Helpers
       def validate(identifier, args = {})
         validator = Definitions.get(identifier)
-        validator.context = self
-        validator.run(*args)
+        validator.run(self, *args)
         validator.handle_failure unless validator.success?
       end
     end

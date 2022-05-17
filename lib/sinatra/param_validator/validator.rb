@@ -5,7 +5,6 @@ module Sinatra
     # Definition of a single validator
     class Validator
       attr_reader :errors
-      attr_writer :context
 
       def initialize(&definition)
         @definition = definition
@@ -16,8 +15,8 @@ module Sinatra
         raise 'Validation Failed'
       end
 
-      def run
-        @errors = Parser.parse(@definition, @context).errors
+      def run(context)
+        @errors = Parser.parse(@definition, context).errors
       end
 
       def success?
