@@ -7,18 +7,25 @@ module Sinatra
       class String
         attr_reader :errors, :value
 
-        def initialize(value, *args)
-          @args = args
-          @errors = {}
+        def initialize(value, **kwargs)
+          @errors = []
           @value = value
+
+          validate(kwargs)
         end
 
         def coerce
+          return nil if @value.nil?
+
           String(@value)
         end
 
-        def validate
-          @args.each do |key, value|
+        def valid?
+          @errors.empty?
+        end
+
+        def validate(options)
+          options.each do |key, value|
             raise "Unknown option '#{key}' for #{self.class}" unless respond_to? key, true
 
             method(key).call(value)
@@ -28,11 +35,11 @@ module Sinatra
         private
 
         def blank(enabled)
-          @errors.push 'Parameter cannot be blank' if !enabled && @value == ''
+          @errors.push 'Parameter cannot be blank' if !enabled && !@value&.match?(/\S/)
         end
 
         def format(format_string)
-          @errors.push 'Parameter cannot be blank' unless @value&.match?(format_string)
+          @errors.push "Parameter must match the format #{format_string}" unless @value&.match?(format_string)
         end
 
         def is(option_value)

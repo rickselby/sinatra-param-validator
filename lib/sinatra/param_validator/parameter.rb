@@ -1,19 +1,14 @@
 # frozen_string_literal: true
 
+require_relative 'parameter/string'
+
 module Sinatra
   class ParamValidator
     # Class to validate a single parameter
     class Parameter
-      attr_reader :errors
-
-      def initialize(value, type, *args)
-        @value = value
-        @type = type
-        @args = args
-      end
-
-      def valid?
-        true
+      def self.new(value, type, *args)
+        klass = Object.const_get "Sinatra::ParamValidator::Parameter::#{type}"
+        klass.new(value, *args)
       end
     end
   end
