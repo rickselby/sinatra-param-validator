@@ -1,11 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe Sinatra::ParamValidator, '.define' do
-  subject(:run_validator) do
-    Sinatra::ParamValidator::Definitions.get(:identifier).run
-  end
-
-  before do
+  subject(:validator) do
     described_class.define :identifier do
       param :boolean, :boolean, required: true
       param :date, Date, required: true
@@ -16,6 +12,6 @@ RSpec.describe Sinatra::ParamValidator, '.define' do
   end
 
   it 'is valid syntax' do
-    run_validator
+    expect { validator }.not_to raise_error
   end
 end
