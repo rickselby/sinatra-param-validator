@@ -3,7 +3,7 @@
 require 'delegate'
 
 module Sinatra
-  class ParamValidator
+  module ParamValidator
     # Parse a definition into a list of commands
     class Parser < SimpleDelegator
       attr_reader :errors

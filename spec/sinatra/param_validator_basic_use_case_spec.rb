@@ -7,13 +7,14 @@ describe Sinatra::ParamValidator do
   before do
     klass = described_class
     mock_app do
-      helpers Sinatra::ParamValidator::Helpers
+      register klass
+
+      validator :identifier do
+        param :string, String, required: true, blank: false
+      end
 
       post '/' do
-        validator = klass.define :identifier do
-          param :string, String, required: true, blank: false
-        end
-        validate validator, {}
+        validate :identifier, {}
         'OK'.to_json
       end
     end
