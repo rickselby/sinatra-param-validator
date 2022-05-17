@@ -22,7 +22,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
       context "with the string #{string}" do
         let(:value) { string }
 
-        example { expect { coerce }.to raise_error ArgumentError }
+        it { is_expected.to be_nil }
+        example { expect(klass.errors).not_to be_empty }
       end
     end
   end
