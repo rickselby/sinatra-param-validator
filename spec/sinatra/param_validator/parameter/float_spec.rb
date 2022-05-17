@@ -3,7 +3,7 @@
 RSpec.describe Sinatra::ParamValidator::Parameter::Float do
   subject(:valid) { klass.valid? }
 
-  let(:klass) { described_class.new(value, options) }
+  let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
   let(:value) { '12.34' }
 

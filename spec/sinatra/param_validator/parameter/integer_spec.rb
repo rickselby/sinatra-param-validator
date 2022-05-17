@@ -3,7 +3,7 @@
 RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
   subject(:valid) { klass.valid? }
 
-  let(:klass) { described_class.new(value, options) }
+  let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
   let(:value) { '123' }
 

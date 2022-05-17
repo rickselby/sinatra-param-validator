@@ -3,7 +3,7 @@
 RSpec.describe Sinatra::ParamValidator::Parameter::Date do
   subject(:valid) { klass.valid? }
 
-  let(:klass) { described_class.new(value, options) }
+  let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
   let(:value) { Date.new(2022, 5, 17).to_s }
 
