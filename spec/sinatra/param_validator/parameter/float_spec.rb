@@ -22,7 +22,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Float do
       context "with the string #{string}" do
         let(:value) { string }
 
-        it { expect { coerce }.to raise_error ArgumentError }
+        example { expect { coerce }.to raise_error ArgumentError }
       end
     end
   end
