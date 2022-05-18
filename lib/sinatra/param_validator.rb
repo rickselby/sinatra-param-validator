@@ -18,6 +18,7 @@ module Sinatra
 
       app.set(:validate) do |*identifiers|
         condition do
+          filter_params
           identifiers.each { |identifier| validate identifier }
         end
       end
