@@ -16,9 +16,12 @@ module Sinatra
     def self.registered(app)
       app.helpers Helpers
 
+      app.before do
+        filter_params
+      end
+
       app.set(:validate) do |*identifiers|
         condition do
-          filter_params
           identifiers.each { |identifier| validate identifier }
         end
       end
