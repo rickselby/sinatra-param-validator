@@ -24,6 +24,14 @@ module Sinatra
         def format(format_string)
           @errors.push "Parameter must match the format #{format_string}" unless @coerced&.match?(format_string)
         end
+
+        def max_length(length)
+          @errors.push "Parameter cannot have length greater than #{length}" unless @coerced.length <= length
+        end
+
+        def min_length(length)
+          @errors.push "Parameter cannot have length less than #{length}" unless @coerced.length >= length
+        end
       end
     end
   end

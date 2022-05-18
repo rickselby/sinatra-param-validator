@@ -92,4 +92,28 @@ RSpec.describe Sinatra::ParamValidator::Parameter::String do
       it { is_expected.to be true }
     end
   end
+
+  describe 'max_length' do
+    let(:options) { { max_length: 10 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid maximum' do
+      let(:options) { { max_length: 5 } }
+
+      it { is_expected.to be false }
+    end
+  end
+
+  describe 'min_length' do
+    let(:options) { { min_length: 5 } }
+
+    it { is_expected.to be true }
+
+    context 'with an invalid maximum' do
+      let(:options) { { min_length: 10 } }
+
+      it { is_expected.to be false }
+    end
+  end
 end
