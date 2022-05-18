@@ -10,6 +10,8 @@ module Sinatra
         include Common
         include CommonMinMax
 
+        private
+
         def coerce(value)
           return nil if value.nil?
 

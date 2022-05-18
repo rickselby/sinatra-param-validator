@@ -9,6 +9,8 @@ module Sinatra
       class Boolean
         include Common
 
+        private
+
         def coerce(value)
           return nil if value.nil?
 

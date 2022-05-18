@@ -10,8 +10,10 @@ module Sinatra
         def initialize(value, **options)
           @errors = []
           @coerced = coerce value
+          @options = options
 
-          validate(options)
+          validate_options
+          validate unless nil_and_ok?
         rescue ArgumentError
           @errors.push "'#{value}' is not a valid #{self.class}"
         end
@@ -20,18 +22,19 @@ module Sinatra
           @errors.empty?
         end
 
-        def validate(options)
-          options.each do |key, value|
-            raise "Unknown option '#{key}' for #{self.class}" unless respond_to? key, true
-
-            method(key).call(value)
-          end
+        def validate_options
+          @options.each { |key, _| raise "Unknown option '#{key}' for #{self.class}" unless respond_to? key }
         end
+        private :validate_options
+
+        def validate
+          @options.each { |key, value| method(key).call(value) }
+        end
+        private :validate
 
         def in(options)
           @errors.push "Parameter must be within #{options}" unless in? options
         end
-        private :in
 
         def in?(options)
           case options
@@ -41,17 +44,23 @@ module Sinatra
             Array(options).include? @coerced
           end
         end
-        private :in?
 
         def is(option_value)
           @errors.push "Parameter must be #{option_value}" unless @coerced == option_value
         end
-        private :is
+
+        def nillable(_)
+          # Does nothing. Allows other tests to ignore nil values if present in the options
+        end
+
+        def nil_and_ok?
+          @options.key?(:nillable) && @coerced.nil?
+        end
+        private :nil_and_ok?
 
         def required(enabled)
           @errors.push 'Parameter is required' if enabled && @coerced.nil?
         end
-        private :required
       end
 
       # min/max tests
@@ -59,12 +68,10 @@ module Sinatra
         def max(maximum)
           @errors.push "Parameter cannot be greater than #{maximum}" unless @coerced <= maximum
         end
-        private :max
 
         def min(minimum)
           @errors.push "Parameter cannot be less than #{minimum}" unless @coerced >= minimum
         end
-        private :min
       end
 
       # min/max length tests
@@ -72,12 +79,12 @@ module Sinatra
         def max_length(length)
           @errors.push "Parameter cannot have length greater than #{length}" unless @coerced.length <= length
         end
-        private :max_length
 
         def min_length(length)
-          @errors.push "Parameter cannot have length less than #{length}" unless @coerced.length >= length
+          return if @coerced.respond_to?(:length) && @coerced.length >= length
+
+          @errors.push "Parameter cannot have length less than #{length}"
         end
-        private :min_length
       end
     end
   end

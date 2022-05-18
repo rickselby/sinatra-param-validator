@@ -86,10 +86,22 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
 
     it { is_expected.to be true }
 
-    context 'with an invalid maximum' do
+    context 'with an invalid minimum' do
       let(:options) { { min_length: 5 } }
 
       it { is_expected.to be false }
+    end
+
+    context 'with a nil value' do
+      let(:value) { nil }
+
+      it { is_expected.to be false }
+
+      context 'when nillable' do
+        let(:options) { { nillable: true, min_length: 2 } }
+
+        it { is_expected.to be true }
+      end
     end
   end
 end
