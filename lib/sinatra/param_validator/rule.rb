@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'rule/all_or_none_of'
 require_relative 'rule/any_of'
 require_relative 'rule/one_of'
 
