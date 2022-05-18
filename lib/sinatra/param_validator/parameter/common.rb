@@ -57,12 +57,12 @@ module Sinatra
       # min/max tests
       module CommonMinMax
         def max(maximum)
-          @errors.push "Parameter cannot be greater than #{maximum}" unless @coerced.nil? || @coerced <= maximum
+          @errors.push "Parameter cannot be greater than #{maximum}" unless @coerced <= maximum
         end
         private :max
 
         def min(minimum)
-          @errors.push "Parameter cannot be less than #{minimum}" unless @coerced.nil? || @coerced >= minimum
+          @errors.push "Parameter cannot be less than #{minimum}" unless @coerced >= minimum
         end
         private :min
       end
