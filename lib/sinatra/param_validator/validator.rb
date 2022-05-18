@@ -12,7 +12,6 @@ module Sinatra
       end
 
       def handle_failure
-        p @errors
         raise 'Validation Failed'
       end
 
