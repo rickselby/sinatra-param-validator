@@ -66,6 +66,19 @@ module Sinatra
         end
         private :min
       end
+
+      # min/max length tests
+      module CommonMinMaxLength
+        def max_length(length)
+          @errors.push "Parameter cannot have length greater than #{length}" unless @coerced.length <= length
+        end
+        private :max_length
+
+        def min_length(length)
+          @errors.push "Parameter cannot have length less than #{length}" unless @coerced.length >= length
+        end
+        private :min_length
+      end
     end
   end
 end
