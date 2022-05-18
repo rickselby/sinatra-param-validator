@@ -7,7 +7,7 @@ module Sinatra
       class AllOrNoneOf
         attr_reader :errors
 
-        def initialize(params, *fields)
+        def initialize(params, *fields, **_kwargs)
           @errors = []
           @params = params
           @fields = fields
