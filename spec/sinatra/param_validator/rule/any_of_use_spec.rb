@@ -2,15 +2,14 @@
 
 require 'sinatra/test_helpers'
 
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Rule::AnyOf do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
-        rule :one_of, :a, :b
+        rule :any_of, :a, :b
       end
 
       post '/', validate: :identifier do
@@ -28,7 +27,8 @@ describe Sinatra::ParamValidator do
     expect { post '/' }.to raise_error 'Validation Failed'
   end
 
-  it 'fails with both params' do
-    expect { post '/', { a: :a, b: :b } }.to raise_error 'Validation Failed'
+  it 'passes with both params' do
+    post '/', { a: :a, b: :b }
+    expect(last_response).to be_ok
   end
 end
