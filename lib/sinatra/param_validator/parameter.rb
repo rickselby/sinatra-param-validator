@@ -11,7 +11,7 @@ require_relative 'parameter/time'
 
 module Sinatra
   module ParamValidator
-    # Class to validate a single parameter
+    # Load and validate a single parameter
     class Parameter
       def self.new(value, type, **args)
         type = type.to_s.capitalize if type.is_a? Symbol

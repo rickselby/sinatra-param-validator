@@ -6,7 +6,7 @@ require_relative 'rule/one_of'
 
 module Sinatra
   module ParamValidator
-    # Class to validate a single parameter
+    # Class to check a single rule
     class Rule
       def self.new(name, params, *args, **kwargs)
         name = camelize(name) if name.is_a? Symbol

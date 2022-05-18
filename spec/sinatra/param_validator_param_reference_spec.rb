@@ -2,6 +2,7 @@
 
 require 'sinatra/test_helpers'
 
+# Test we can use a coerced parameter in a later validation
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do

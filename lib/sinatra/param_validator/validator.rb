@@ -16,7 +16,7 @@ module Sinatra
       end
 
       def run(context)
-        @errors = Parser.parse(@definition, context).errors
+        @errors = Parser.new(@definition, context).errors
       end
 
       def success?

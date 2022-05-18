@@ -7,13 +7,9 @@ require_relative 'rule'
 
 module Sinatra
   module ParamValidator
-    # Parse a definition into a list of commands
+    # Run the definition in the given scope
     class Parser < SimpleDelegator
       attr_reader :errors
-
-      def self.parse(definition, context)
-        new(definition, context)
-      end
 
       def initialize(definition, context)
         super(context)

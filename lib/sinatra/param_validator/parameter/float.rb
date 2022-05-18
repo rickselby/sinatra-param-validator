@@ -5,7 +5,7 @@ require_relative 'common'
 module Sinatra
   module ParamValidator
     class Parameter
-      # Validation for integers
+      # Validation for floats
       class Float
         include Common
         include CommonMinMax

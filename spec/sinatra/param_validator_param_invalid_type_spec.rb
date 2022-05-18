@@ -2,6 +2,7 @@
 
 require 'sinatra/test_helpers'
 
+# Test that an invalid coercion raises a type error
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do

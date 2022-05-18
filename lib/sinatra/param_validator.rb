@@ -7,7 +7,7 @@ require_relative 'param_validator/validator'
 require_relative 'param_validator/version'
 
 module Sinatra
-  # Validator for param
+  # Module to register in Sinatra app
   module ParamValidator
     def validator(identifier, &definition)
       Definitions.add(identifier, Validator.new(&definition))
