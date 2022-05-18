@@ -2,7 +2,6 @@
 
 require_relative 'param_validator/definitions'
 require_relative 'param_validator/helpers'
-require_relative 'param_validator/parameter'
 require_relative 'param_validator/parser'
 require_relative 'param_validator/validator'
 require_relative 'param_validator/version'
