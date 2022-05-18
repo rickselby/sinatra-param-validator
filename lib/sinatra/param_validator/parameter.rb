@@ -5,6 +5,7 @@ require_relative 'parameter/date'
 require_relative 'parameter/float'
 require_relative 'parameter/integer'
 require_relative 'parameter/string'
+require_relative 'parameter/time'
 
 module Sinatra
   module ParamValidator
