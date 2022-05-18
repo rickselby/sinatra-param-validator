@@ -25,7 +25,6 @@ module Sinatra
         def format(format_string)
           @errors.push "Parameter must match the format #{format_string}" unless @coerced&.match?(format_string)
         end
-
       end
     end
   end
