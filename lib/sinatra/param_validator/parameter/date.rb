@@ -6,7 +6,7 @@ require_relative 'common'
 module Sinatra
   module ParamValidator
     class Parameter
-      # Validation for integers
+      # Validation for dates
       class Date
         include Common
         include CommonMinMax

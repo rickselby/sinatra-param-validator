@@ -3,7 +3,7 @@
 module Sinatra
   module ParamValidator
     class Parameter
-      # Validation for integers
+      # Common validation methods shared between parameters
       module Common
         attr_reader :coerced, :errors
 

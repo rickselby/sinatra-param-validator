@@ -2,6 +2,7 @@
 
 require 'sinatra/test_helpers'
 
+# Test the use of the route condition 'validate' to run a validator
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do

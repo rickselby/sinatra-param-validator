@@ -5,7 +5,7 @@ require_relative 'common'
 module Sinatra
   module ParamValidator
     class Parameter
-      # Validation for strings
+      # Validation for booleans
       class Boolean
         include Common
 

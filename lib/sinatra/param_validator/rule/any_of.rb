@@ -3,7 +3,7 @@
 module Sinatra
   module ParamValidator
     class Rule
-      # Validation for strings
+      # Rule to enforce at least one of the given params exists
       class AnyOf
         attr_reader :errors
 
