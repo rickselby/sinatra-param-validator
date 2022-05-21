@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'shared_examples'
+
 RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
   subject(:valid) { klass.valid? }
 
@@ -23,10 +25,12 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
         it { is_expected.to eq(hash) }
       end
     end
+
+    it_behaves_like 'it coerces nil to nil'
   end
 
   describe 'is' do
-    let(:options) { { is: value } }
+    let(:options) { { is: { a: 1, b: 2, c: 3 } } }
 
     it { is_expected.to be true }
 
@@ -35,10 +39,12 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'in' do
-    let(:options) { { in: [value] } }
+    let(:options) { { in: [{ a: 1, b: 2, c: 3 }] } }
 
     it { is_expected.to be true }
 
@@ -47,6 +53,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'required' do
@@ -77,6 +85,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'min_length' do
@@ -89,5 +99,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 end

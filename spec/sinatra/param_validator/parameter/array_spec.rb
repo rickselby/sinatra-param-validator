@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'shared_examples'
+
 RSpec.describe Sinatra::ParamValidator::Parameter::Array do
   subject(:valid) { klass.valid? }
 
@@ -25,6 +27,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
         it { is_expected.to eq array }
       end
     end
+
+    it_behaves_like 'it coerces nil to nil'
   end
 
   describe 'is' do
@@ -37,6 +41,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'in' do
@@ -49,6 +55,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'required' do
@@ -80,17 +88,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
       it { is_expected.to be false }
     end
 
-    context 'with a nil value' do
-      let(:value) { nil }
-
-      it { is_expected.to be false }
-
-      context 'when nillable' do
-        let(:options) { { nillable: true, max_length: 5 } }
-
-        it { is_expected.to be true }
-      end
-    end
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'min_length' do
@@ -104,16 +102,6 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
       it { is_expected.to be false }
     end
 
-    context 'with a nil value' do
-      let(:value) { nil }
-
-      it { is_expected.to be false }
-
-      context 'when nillable' do
-        let(:options) { { nillable: true, min_length: 2 } }
-
-        it { is_expected.to be true }
-      end
-    end
+    it_behaves_like 'it handles nil and nillable'
   end
 end

@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'shared_examples'
+
 RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
   subject(:valid) { klass.valid? }
 
@@ -26,6 +28,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
         example { expect(klass.errors).not_to be_empty }
       end
     end
+
+    it_behaves_like 'it coerces nil to nil'
   end
 
   describe 'is' do
@@ -38,9 +42,11 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
-  describe 'in' do
+  describe 'in (array)' do
     let(:options) { { in: [123, 456, 789] } }
 
     it { is_expected.to be true }
@@ -51,17 +57,21 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
       it { is_expected.to be false }
     end
 
-    context 'with a valid range' do
-      let(:options) { { in: 100..200 } }
+    it_behaves_like 'it handles nil and nillable'
+  end
 
-      it { is_expected.to be true }
-    end
+  describe 'in (range)' do
+    let(:options) { { in: 100..200 } }
 
-    context 'with an invalid range' do
+    it { is_expected.to be true }
+
+    context 'with an invalid option' do
       let(:options) { { in: 200..300 } }
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'required' do
@@ -92,6 +102,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'min' do
@@ -104,5 +116,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 end
