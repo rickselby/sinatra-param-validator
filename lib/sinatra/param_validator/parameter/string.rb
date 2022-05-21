@@ -10,10 +10,6 @@ module Sinatra
         include Common
         include CommonMinMaxLength
 
-        def blank(enabled)
-          @errors.push 'Parameter cannot be blank' if !enabled && !@coerced&.match?(/\S/)
-        end
-
         def format(format_string)
           @errors.push "Parameter must match the format #{format_string}" unless @coerced&.match?(format_string)
         end

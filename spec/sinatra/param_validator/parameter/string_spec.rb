@@ -31,20 +31,6 @@ RSpec.describe Sinatra::ParamValidator::Parameter::String do
     it_behaves_like 'it coerces nil to nil'
   end
 
-  describe 'blank' do
-    let(:options) { { blank: false } }
-
-    it { is_expected.to be true }
-
-    context 'with a blank value' do
-      let(:value) { nil }
-
-      it { is_expected.to be false }
-    end
-
-    it_behaves_like 'it handles nil and nillable'
-  end
-
   describe 'format' do
     let(:options) { { format: /str.*/ } }
 
