@@ -21,7 +21,7 @@ module Sinatra
 
       def param(key, type, **args)
         parameter = Parameter.new(@context.params[key], type, **args)
-        @context.params[key] = parameter.coerced
+        @context.params[key] = parameter.coerced if @context.params.key? key
         @errors.push(parameter.errors) unless parameter.valid?
       rescue NameError
         raise 'Invalid parameter type'
