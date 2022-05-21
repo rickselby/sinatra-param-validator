@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require_relative 'shared_examples'
+
 RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
   subject(:valid) { klass.valid? }
 
@@ -34,6 +36,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
         example { expect(klass.errors).not_to be_empty }
       end
     end
+
+    it_behaves_like 'it coerces nil to nil'
   end
 
   describe 'is' do
@@ -46,6 +50,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'in' do
@@ -58,6 +64,8 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
 
       it { is_expected.to be false }
     end
+
+    it_behaves_like 'it handles nil and nillable'
   end
 
   describe 'required' do
