@@ -11,7 +11,7 @@ module Sinatra
         @errors = []
       end
 
-      def handle_failure
+      def handle_failure(_context)
         raise 'Validation Failed'
       end
 
