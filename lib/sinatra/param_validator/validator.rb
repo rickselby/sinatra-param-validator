@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'validation_failed_error'
 require_relative 'validator/form'
 require_relative 'validator/url_param'
 
@@ -15,7 +16,7 @@ module Sinatra
       end
 
       def handle_failure(_context)
-        raise 'Validation Failed'
+        raise ValidationFailedError, @errors
       end
 
       def run(context)

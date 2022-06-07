@@ -44,6 +44,7 @@ module Sinatra
             Array(options).include? @coerced
           end
         end
+        private :in?
 
         def is(option_value)
           @errors.push "Parameter must be #{option_value}" unless @coerced == option_value
