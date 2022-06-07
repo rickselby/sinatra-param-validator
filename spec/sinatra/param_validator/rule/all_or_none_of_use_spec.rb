@@ -24,7 +24,7 @@ describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
   end
 
   it 'fails with one param' do
-    expect { post '/', { a: :a } }.to raise_error 'Validation Failed'
+    expect { post '/', { a: :a } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
   it 'passes with no params' do

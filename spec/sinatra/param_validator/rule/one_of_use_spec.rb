@@ -24,10 +24,10 @@ describe Sinatra::ParamValidator::Rule::OneOf do
   end
 
   it 'fails with no params' do
-    expect { post '/' }.to raise_error 'Validation Failed'
+    expect { post '/' }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
   it 'fails with both params' do
-    expect { post '/', { a: :a, b: :b } }.to raise_error 'Validation Failed'
+    expect { post '/', { a: :a, b: :b } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

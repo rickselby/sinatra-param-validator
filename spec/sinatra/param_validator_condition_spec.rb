@@ -26,6 +26,6 @@ describe Sinatra::ParamValidator do
   end
 
   it 'raises an error for an invalid validation' do
-    expect { post '/', {} }.to raise_error 'Validation Failed'
+    expect { post '/', {} }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

@@ -28,6 +28,6 @@ describe Sinatra::ParamValidator do
   end
 
   it 'raises an error for invalid numbers' do
-    expect { post '/', { max: '10', value: '15' } }.to raise_error 'Validation Failed'
+    expect { post '/', { max: '10', value: '15' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end
