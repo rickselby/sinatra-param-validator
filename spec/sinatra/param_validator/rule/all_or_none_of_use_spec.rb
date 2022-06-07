@@ -8,7 +8,7 @@ describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
     mock_app do
       register Sinatra::ParamValidator
 
-      validator :identifier do
+      validator identifier: :identifier do
         rule :all_or_none_of, :a, :b
       end
 
