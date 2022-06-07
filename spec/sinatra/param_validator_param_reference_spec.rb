@@ -27,7 +27,7 @@ describe Sinatra::ParamValidator do
     expect(last_response).to be_ok
   end
 
-  it 'returns bad request for invalid numbers' do
+  it 'raises an error for invalid numbers' do
     expect { post '/', { max: '10', value: '15' } }.to raise_error 'Validation Failed'
   end
 end

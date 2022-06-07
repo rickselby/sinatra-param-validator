@@ -11,7 +11,7 @@ module Sinatra
 
       def initialize(&definition)
         @definition = definition
-        @errors = []
+        @errors = {}
       end
 
       def handle_failure(_context)
