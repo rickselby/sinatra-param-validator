@@ -3,12 +3,14 @@
 module Sinatra
   module ParamValidator
     # Store of valid definitions
-    module Definitions
-      @definitions = {}
-
-      module_function
+    class Definitions
+      def initialize
+        @definitions = {}
+      end
 
       def add(identifier, validator)
+        raise "Validator already defined: '#{identifier}'" if @definitions.key? identifier
+
         @definitions[identifier] = validator
       end
 

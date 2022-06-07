@@ -10,11 +10,13 @@ module Sinatra
   # Module to register in Sinatra app
   module ParamValidator
     def validator(identifier, &definition)
-      Definitions.add(identifier, Validator.new(&definition))
+      settings.validator_definitions.add(identifier, Validator.new(&definition))
     end
 
     def self.registered(app)
       app.helpers Helpers
+
+      app.set(:validator_definitions, Definitions.new)
 
       app.before do
         filter_params
