@@ -5,7 +5,6 @@ module Sinatra
     class Validator
       # A URL parameter; handle validation failure with
       class UrlParam < Validator
-
         def handle_failure(context)
           context.halt 403
         end

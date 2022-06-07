@@ -5,7 +5,6 @@ module Sinatra
     class Validator
       # A form validator
       class Form < Validator
-
         def handle_failure(context)
           case context.request.preferred_type.to_s
           when 'application/json' then return json_failure(context)
