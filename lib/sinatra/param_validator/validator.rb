@@ -1,5 +1,8 @@
 # frozen_string_literal: true
 
+require_relative 'validator/form'
+require_relative 'validator/url_param'
+
 module Sinatra
   module ParamValidator
     # Definition of a single validator

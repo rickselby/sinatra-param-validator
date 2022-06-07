@@ -10,7 +10,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator :identifier do
+      validator identifier: :identifier do
         param :max, Integer, required: true
       end
 
