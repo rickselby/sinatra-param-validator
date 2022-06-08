@@ -8,7 +8,7 @@ describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
     mock_app do
       register Sinatra::ParamValidator
 
-      validator :identifier do
+      validator identifier: :identifier do
         rule :all_or_none_of, :a, :b
       end
 
@@ -24,7 +24,7 @@ describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
   end
 
   it 'fails with one param' do
-    expect { post '/', { a: :a } }.to raise_error 'Validation Failed'
+    expect { post '/', { a: :a } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
   it 'passes with no params' do

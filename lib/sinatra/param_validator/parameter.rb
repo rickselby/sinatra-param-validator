@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require_relative 'camelize'
 require_relative 'parameter/array'
 require_relative 'parameter/boolean'
 require_relative 'parameter/date'
@@ -13,10 +14,14 @@ module Sinatra
   module ParamValidator
     # Load and validate a single parameter
     class Parameter
-      def self.new(value, type, **args)
-        type = type.to_s.capitalize if type.is_a? Symbol
-        klass = Object.const_get "Sinatra::ParamValidator::Parameter::#{type}"
-        klass.new(value, **args)
+      class << self
+        include Camelize
+
+        def new(value, type, **args)
+          type = camelize(type) if type.is_a? Symbol
+          klass = Object.const_get "Sinatra::ParamValidator::Parameter::#{type}"
+          klass.new(value, **args)
+        end
       end
     end
   end

@@ -14,7 +14,7 @@ module Sinatra
       def initialize(definition, context)
         super(context)
         @context = context
-        @errors = []
+        @errors = {}
 
         instance_exec({}, &definition)
       end
@@ -22,14 +22,17 @@ module Sinatra
       def param(key, type, **args)
         parameter = Parameter.new(@context.params[key], type, **args)
         @context.params[key] = parameter.coerced if @context.params.key? key
-        @errors.push(parameter.errors) unless parameter.valid?
+        @errors[key] = parameter.errors unless parameter.valid?
       rescue NameError
         raise 'Invalid parameter type'
       end
 
       def rule(name, *args, **kwargs)
         rule = Rule.new(name, @context.params, *args, **kwargs)
-        @errors.push(rule.errors) unless rule.passes?
+        unless rule.passes?
+          @errors[:rules] ||= []
+          @errors[:rules].push(rule.errors)
+        end
       rescue NameError
         raise 'Invalid rule type'
       end

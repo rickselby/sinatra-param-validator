@@ -14,9 +14,9 @@ module Sinatra
       end
 
       def validate(identifier, args = {})
-        validator = Definitions.get(identifier)
+        validator = settings.validator_definitions.get(identifier)
         validator.run(self, *args)
-        validator.handle_failure unless validator.success?
+        validator.handle_failure(self) unless validator.success?
       end
     end
   end
