@@ -1,9 +1,5 @@
 # frozen_string_literal: true
 
-require_relative 'validation_failed_error'
-require_relative 'validator/form'
-require_relative 'validator/url_param'
-
 module Sinatra
   module ParamValidator
     # Definition of a single validator
@@ -26,6 +22,21 @@ module Sinatra
       def success?
         @errors.empty?
       end
+
+      @validators = []
+
+      class << self
+        attr_reader :validators
+
+        def inherited(subclass)
+          super
+          @validators << subclass
+        end
+      end
     end
   end
 end
+
+require_relative 'validation_failed_error'
+require_relative 'validator/form'
+require_relative 'validator/url_param'

@@ -13,8 +13,9 @@ module Sinatra
         raise "Filter params failed: #{e}"
       end
 
-      def validate(identifier, args = {})
-        validator = settings.validator_definitions.get(identifier)
+      def validate(klass, identifier, args = {})
+        definition = settings.validator_definitions.get(identifier)
+        validator = klass.new(&definition)
         validator.run(self, *args)
         validator.handle_failure(self) unless validator.success?
       end

@@ -8,7 +8,7 @@ describe Sinatra::ParamValidator::Rule::OneOf do
     mock_app do
       register Sinatra::ParamValidator
 
-      validator identifier: :identifier do
+      validator :identifier do
         rule :one_of, :a, :b
       end
 

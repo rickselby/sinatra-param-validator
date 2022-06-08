@@ -15,7 +15,7 @@ If bundler is not being used to manage dependencies, install the gem by executin
 ## Sample Usage
 
 ```ruby
-validator identifier: :user_id do
+validator :user_id do
   param :id, Integer, required: true
 end
 
@@ -23,7 +23,7 @@ get '/user/:id', validate: :user_id do
   # ...
 end
 
-validator identifier: :new_user do
+validator :new_user do
   param :name, String, required: true
   param :age, Integer, required: true, min: 0 
 end
@@ -113,12 +113,16 @@ There are two other provided validators, that handle failure differently:
   * will provide a JSON object with errors to an XHR request
   * will `halt 400`
 
-These validators can be set when a validator is defined:
+These validators can be invoked with a different conditional on the route:
 
 ```ruby
-validator type: :form, identifier: :new_user do
-  param :name, String, required: true
-  param :age, Integer, required: true, min: 0 
+post '/new-user', validate_form: :new_user do
+  # ...
+end
+
+
+get '/user/:id', validate_url_param: :user_id do
+  # ...
 end
 ```
 

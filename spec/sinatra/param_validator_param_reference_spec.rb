@@ -10,13 +10,12 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator identifier: :identifier do
+      validator :identifier do
         param :max, Integer, required: true
         param :value, Integer, required: true, max: params[:max]
       end
 
-      post '/' do
-        validate :identifier, {}
+      post '/', validate: :identifier do
         'OK'.to_json
       end
     end

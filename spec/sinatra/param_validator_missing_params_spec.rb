@@ -9,7 +9,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator identifier: :identifier do
+      validator :identifier do
         param :a, Integer
         param :b, Integer
         param :c, Integer

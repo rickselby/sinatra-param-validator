@@ -1,6 +1,11 @@
 ## [Unreleased]
 
 - Don't create entries in `params` for parameters that are not passed
+- Don't set validator type during definition
+- Add unique validator conditionals for each validator:
+  - validate
+  - validate_form
+  - validate_url_param
 
 ## [0.2.0] - 2022-06-08
 

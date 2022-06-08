@@ -10,7 +10,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator identifier: :identifier do
+      validator :identifier do
         param :array, Array
         param :bool, :boolean
         param :date, Date
