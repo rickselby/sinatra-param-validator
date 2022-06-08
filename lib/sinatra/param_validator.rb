@@ -12,29 +12,29 @@ module Sinatra
   # Module to register in Sinatra app
   module ParamValidator
     include Camelize
-    class << self
-      include SnakeCase
-    end
 
     def validator(identifier, &definition)
       settings.validator_definitions.add(identifier, definition)
     end
 
-    def self.registered(app)
-      app.helpers Helpers
-      app.before { filter_params }
-      app.set(:validator_definitions, Definitions.new)
-      app.set(:validate) do |*identifiers|
-        condition do
-          identifiers.each { |identifier| validate Sinatra::ParamValidator::Validator, identifier }
+    class << self
+      include SnakeCase
+
+      def registered(app)
+        app.helpers Helpers
+        app.before { filter_params }
+        app.set(:validator_definitions, Definitions.new)
+        validator_conditional app, :validate, Sinatra::ParamValidator::Validator
+
+        Sinatra::ParamValidator::Validator.validators.each do |validator|
+          validator_conditional app, :"validate_#{snake_case(validator.to_s.split('::').last)}", validator
         end
       end
 
-      Sinatra::ParamValidator::Validator.validators.each do |validator|
-        name = snake_case validator.to_s.split('::').last
-        app.set(:"validate_#{name}") do |*identifiers|
+      def validator_conditional(app, name, klass)
+        app.set(name) do |*identifiers|
           condition do
-            identifiers.each { |identifier| validate validator, identifier }
+            identifiers.each { |identifier| validate klass, identifier }
           end
         end
       end
