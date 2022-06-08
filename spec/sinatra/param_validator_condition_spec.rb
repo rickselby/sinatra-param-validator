@@ -10,7 +10,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator :identifier do
+      validator identifier: :identifier do
         param :number, Integer, required: true
       end
 
@@ -25,7 +25,7 @@ describe Sinatra::ParamValidator do
     expect(last_response).to be_ok
   end
 
-  it 'returns bad request for an invalid validation' do
-    expect { post '/', {} }.to raise_error 'Validation Failed'
+  it 'raises an error for an invalid validation' do
+    expect { post '/', {} }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

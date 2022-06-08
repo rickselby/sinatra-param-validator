@@ -1,5 +1,9 @@
 # frozen_string_literal: true
 
+require_relative 'validation_failed_error'
+require_relative 'validator/form'
+require_relative 'validator/url_param'
+
 module Sinatra
   module ParamValidator
     # Definition of a single validator
@@ -8,11 +12,11 @@ module Sinatra
 
       def initialize(&definition)
         @definition = definition
-        @errors = []
+        @errors = {}
       end
 
-      def handle_failure
-        raise 'Validation Failed'
+      def handle_failure(_context)
+        raise ValidationFailedError, @errors
       end
 
       def run(context)

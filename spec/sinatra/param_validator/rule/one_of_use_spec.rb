@@ -8,7 +8,7 @@ describe Sinatra::ParamValidator::Rule::OneOf do
     mock_app do
       register Sinatra::ParamValidator
 
-      validator :identifier do
+      validator identifier: :identifier do
         rule :one_of, :a, :b
       end
 
@@ -24,10 +24,10 @@ describe Sinatra::ParamValidator::Rule::OneOf do
   end
 
   it 'fails with no params' do
-    expect { post '/' }.to raise_error 'Validation Failed'
+    expect { post '/' }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
   it 'fails with both params' do
-    expect { post '/', { a: :a, b: :b } }.to raise_error 'Validation Failed'
+    expect { post '/', { a: :a, b: :b } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

@@ -10,7 +10,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator :identifier do
+      validator identifier: :identifier do
         param :max, Integer, required: true
       end
 
@@ -21,6 +21,6 @@ describe Sinatra::ParamValidator do
   end
 
   it 'raises an error for an invalid parameter type' do
-    expect { post '/', { max: 'foo' } }.to raise_error 'Validation Failed'
+    expect { post '/', { max: 'foo' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end
