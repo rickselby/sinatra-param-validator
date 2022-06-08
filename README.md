@@ -12,20 +12,22 @@ If bundler is not being used to manage dependencies, install the gem by executin
 
     $ gem install sinatra-param-validator
 
-## Usage
-
-Define a validator using the `validator` method:
+## Sample Usage
 
 ```ruby
+validator identifier: :user_id do
+  param :id, Integer, required: true
+end
+
+get '/user/:id', validate: :user_id do
+  # ...
+end
+
 validator identifier: :new_user do
   param :name, String, required: true
   param :age, Integer, required: true, min: 0 
 end
-```
 
-and validate a route using a conditional on a route:
-
-```ruby
 post '/new-user', validate: :new_user do
   # ...
 end
@@ -37,7 +39,8 @@ The following parameter types are built-in,
 and values will be coerced to an object of that type.
 
 * `Array`
-  * Accepts a comma-separated list as well as an array
+  * Accepts a comma-separated list of values, as well as an array
+  * e.g. `a,b,c`
 * `Boolean`
   * `false|f|no|n|0` or `true|t|yes|y|1`
 * `Date`
@@ -45,13 +48,13 @@ and values will be coerced to an object of that type.
 * `Float`
 * `Hash`
   * Accepts a comma-separated list of colon-separated key-value pairs
-  * e.g. a:1,b:2,c:3
+  * e.g. `a:1,b:2,c:3`
 * `Integer`
 * `String`
 * `Time`
   * All formats accepted by `Time.parse`
 
-These can be defined using class names or symbols:
+Types can be defined using class names or symbols:
 
 ```ruby
 param :name, String
@@ -60,12 +63,16 @@ param :tick_box, :boolean
 
 ## Parameter Validations
 
+```ruby
+param :number, Integer, required: true, in: 0..100
+```
+
 All parameters have the following validations available:
 
 * `nillable`
   * If this is set, all other validations are skipped if the value is nil
 * `required`
-  * The value cannot be nil
+  * The parameter must be present and cannot be nil
 * `in`
   * The value is in the given array / range
 * `is`
@@ -81,7 +88,7 @@ All parameters have the following validations available:
 
 ## Rules
 
-Rules work on multiple parameters
+Rules work on multiple parameters:
 
 ```ruby
 rule :all_or_none_of, :a, :b
