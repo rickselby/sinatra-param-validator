@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.3.0] - 2022-06-08
+
 - Don't create entries in `params` for parameters that are not passed
 - Don't set validator type during definition
 - Add unique validator conditionals for each validator:
