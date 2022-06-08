@@ -1,5 +1,27 @@
 ## [Unreleased]
 
+- Don't create entries in `params` for parameters that are not passed
+
+## [0.2.0] - 2022-06-08
+
+- Add validators:
+  - Standard
+  - URL Parameter
+  - Form
+- Add parameters:
+  - Array
+  - Boolean
+  - Date
+  - Float
+  - Hash
+  - Integer
+  - String
+  - Time
+- Add rules:
+  - All or none of
+  - Any of
+  - One of
+
 ## [0.1.0] - 2022-05-16
 
 - Initial release

@@ -2,7 +2,6 @@
 
 require 'sinatra/test_helpers'
 
-# Test we can use a coerced parameter in a later validation
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do
@@ -10,7 +9,7 @@ describe Sinatra::ParamValidator do
     mock_app do
       register klass
 
-      validator :identifier do
+      validator identifier: :identifier do
         param :a, Integer
         param :b, Integer
         param :c, Integer
