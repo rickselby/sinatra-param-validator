@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.5.0] - 2022-06-09
+
 - Allow the validator to be passed to the block for a valid parameter
 
 ## [0.4.0] - 2022-06-09
