@@ -2,7 +2,7 @@
 
 require 'sinatra/test_helpers'
 
-# Test we can use a coerced parameter in a later validation
+# Test we can use validations within blocks
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do
@@ -11,8 +11,9 @@ describe Sinatra::ParamValidator do
       register klass
 
       validator :identifier do
-        param :max, Integer, required: true
-        param :value, Integer, required: true, max: params[:max]
+        param :max, Integer, required: true do |v|
+          v.param :value, Integer, required: true, max: params[:max]
+        end
       end
 
       post '/', validate: :identifier do

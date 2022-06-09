@@ -115,6 +115,15 @@ end
 If you wish to indicate a validation failure within a block, raise `Sinatra::ParameterValidator::InvalidParameterError`
 with a message, and it will be passed through as an error for the parameter.
 
+If you need to do further validation with your parameter, the validator can be passed to the block:
+
+```ruby
+
+param :number, Integer, required: true do |validator|
+  validator.param :digit, Integer, min: params[:number]
+end
+```
+
 ## Rules
 
 Rules work on multiple parameters:
@@ -149,7 +158,6 @@ post '/new-user', validate_form: :new_user do
   # ...
 end
 
-
 get '/user/:id', validate_url_param: :user_id do
   # ...
 end
@@ -169,8 +177,6 @@ post '/number', validate: vi(:new_user, 10) do
   # ...
 end
 ```
-
-
 
 ## Development
 

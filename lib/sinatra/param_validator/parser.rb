@@ -47,7 +47,8 @@ module Sinatra
       end
 
       def run_block(key, block)
-        @context.instance_exec(&block)
+        args = block.arity == 1 ? [self] : []
+        @context.instance_exec(*args, &block)
       rescue InvalidParameterError => e
         add_error key, e.message
       end

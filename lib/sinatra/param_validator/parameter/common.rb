@@ -9,13 +9,17 @@ module Sinatra
 
         def initialize(value, **options)
           @errors = []
-          @coerced = coerce value
           @options = options
+
+          begin
+            @coerced = coerce value
+          rescue ArgumentError
+            @errors.push "'#{value}' is not a valid #{self.class}"
+            return
+          end
 
           validate_options
           validate unless nil_and_ok?
-        rescue ArgumentError
-          @errors.push "'#{value}' is not a valid #{self.class}"
         end
 
         def valid?
