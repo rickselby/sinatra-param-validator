@@ -3,16 +3,15 @@
 require 'sinatra/test_helpers'
 
 # Test we can use validations within blocks
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
         param :max, Integer, required: true do |v|
-          v.param :value, Integer, required: true, max: params[:max]
+          v.param :val, Integer, required: true, max: params[:max]
         end
       end
 
@@ -23,11 +22,11 @@ describe Sinatra::ParamValidator do
   end
 
   it 'returns OK for valid numbers' do
-    post '/', { max: '10', value: '5' }
+    post '/', { max: '10', val: '5' }
     expect(last_response).to be_ok
   end
 
   it 'raises an error for invalid numbers' do
-    expect { post '/', { max: '10', value: '15' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
+    expect { post '/', { max: '10', val: '15' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

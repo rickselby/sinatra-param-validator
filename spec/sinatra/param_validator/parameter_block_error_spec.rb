@@ -3,12 +3,11 @@
 require 'sinatra/test_helpers'
 
 # Test that a custom message gets passed through to the exception
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
         param :val, Integer, message: 'The validation failed' do
