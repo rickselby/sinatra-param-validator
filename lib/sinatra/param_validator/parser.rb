@@ -12,12 +12,12 @@ module Sinatra
     class Parser < SimpleDelegator
       attr_reader :errors
 
-      def initialize(definition, context)
+      def initialize(definition, context, *args)
         super(context)
         @context = context
         @errors = {}
 
-        instance_exec({}, &definition)
+        instance_exec(*args, &definition)
       end
 
       def add_error(key, error)

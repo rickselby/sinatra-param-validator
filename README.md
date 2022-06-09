@@ -155,6 +155,23 @@ get '/user/:id', validate_url_param: :user_id do
 end
 ```
 
+## Validators with parameters
+
+It is possible to define a validator with a parameter.
+To call the validator, you can use the `vi` helper to wrap a validator identifier with arguments:
+
+```ruby
+validator :number do |min|
+  param :id, Integer, min: min
+end
+
+post '/number', validate: vi(:new_user, 10) do
+  # ...
+end
+```
+
+
+
 ## Development
 
 After checking out the repo, run `bundle install` to install dependencies. Then, run `rake spec` to run the tests.

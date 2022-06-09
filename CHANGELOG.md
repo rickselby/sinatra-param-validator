@@ -4,6 +4,7 @@
 - Ensure running multiple validations for a single parameter merges the errors correctly
 - Allow validations to run code if successful
 - Allow exceptions to be raised by the parameter block to indicate failure
+- Allow parameters to be passed to validators
 
 ## [0.3.0] - 2022-06-08
 
