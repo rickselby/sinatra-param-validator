@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - Add `default` option for parameters
+- Allow `default` option to be a proc or a lambda
 
 ## [0.6.0] - 2022-06-09
 

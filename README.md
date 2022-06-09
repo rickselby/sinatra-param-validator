@@ -71,6 +71,7 @@ All parameters have the following validations available:
 
 * `default`
   * Set a default value if this parameter was not provided 
+  * This can be a lambda or a proc if required
 * `nillable`
   * If this is set, all other validations are skipped if the value is nil
 * `required`
