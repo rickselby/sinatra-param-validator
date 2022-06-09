@@ -19,10 +19,10 @@ module Sinatra
         instance_exec({}, &definition)
       end
 
-      def param(key, type, **args)
+      def param(key, type, message: nil, **args)
         parameter = Parameter.new(@context.params[key], type, **args)
         @context.params[key] = parameter.coerced if @context.params.key? key
-        @errors[key] = parameter.errors unless parameter.valid?
+        @errors[key] = (message || parameter.errors) unless parameter.valid?
       rescue NameError
         raise 'Invalid parameter type'
       end
