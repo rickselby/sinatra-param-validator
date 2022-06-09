@@ -94,6 +94,14 @@ It is possible to return a custom error message when a validation fails:
 param :number, Integer, required: true, message: 'The number is required'
 ```
 
+It is also possible to run multiple validations against a single parameter. 
+This can be useful if different failures require different messages. 
+
+```ruby
+param :number, Integer, required: true, message: 'The number is required'
+param :number, Integer, min: 100, message: 'The number is not large enough'
+```
+
 ## Rules
 
 Rules work on multiple parameters:
