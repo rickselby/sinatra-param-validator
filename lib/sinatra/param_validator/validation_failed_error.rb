@@ -6,9 +6,9 @@ module Sinatra
     class ValidationFailedError < StandardError
       attr_reader :errors
 
-      def initialize(errors, msg = nil)
+      def initialize(errors)
         @errors = errors
-        super(msg)
+        super("Validation failed: #{errors}")
       end
     end
   end
