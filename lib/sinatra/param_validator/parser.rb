@@ -2,6 +2,7 @@
 
 require 'delegate'
 
+require_relative 'invalid_parameter_error'
 require_relative 'parameter'
 require_relative 'rule'
 
@@ -19,13 +20,17 @@ module Sinatra
         instance_exec({}, &definition)
       end
 
-      def param(key, type, message: nil, **args, &block) # rubocop:disable Metrics/AbcSize
+      def add_error(key, error)
+        @errors[key] = @errors.fetch(key, []).concat(Array(error))
+      end
+
+      def param(key, type, message: nil, **args, &block)
         parameter = Parameter.new(@context.params[key], type, **args)
         @context.params[key] = parameter.coerced if @context.params.key?(key) && parameter.coerced
         if parameter.valid?
-          @context.instance_exec(&block) if block
+          run_block(key, block) if block
         else
-          @errors[key] = @errors.fetch(key, []).concat(Array(message || parameter.errors))
+          add_error key, message || parameter.errors
         end
       rescue NameError
         raise 'Invalid parameter type'
@@ -39,6 +44,12 @@ module Sinatra
         end
       rescue NameError
         raise 'Invalid rule type'
+      end
+
+      def run_block(key, block)
+        @context.instance_exec(&block)
+      rescue InvalidParameterError => e
+        add_error key, e.message
       end
     end
   end

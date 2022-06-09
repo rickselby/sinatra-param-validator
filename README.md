@@ -112,6 +112,9 @@ param :number, Integer, required: true do
 end
 ```
 
+If you wish to indicate a validation failure within a block, raise `Sinatra::ParameterValidator::InvalidParameterError`
+with a message, and it will be passed through as an error for the parameter.
+
 ## Rules
 
 Rules work on multiple parameters:
