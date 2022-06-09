@@ -3,6 +3,7 @@
 - Allow custom error messages to be used when validation fails
 - Ensure running multiple validations for a single parameter merges the errors correctly
 - Allow validations to run code if successful
+- Allow exceptions to be raised by the parameter block to indicate failure
 
 ## [0.3.0] - 2022-06-08
 
