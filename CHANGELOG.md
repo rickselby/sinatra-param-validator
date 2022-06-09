@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Allow the validator to be passed to the block for a valid parameter
+
 ## [0.4.0] - 2022-06-09
 
 - Allow custom error messages to be used when validation fails
