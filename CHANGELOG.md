@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add `block` to run blocks of code in the route context
+
 ## [0.5.0] - 2022-06-09
 
 - Allow the validator to be passed to the block for a valid parameter
