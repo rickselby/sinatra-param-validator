@@ -118,9 +118,17 @@ with a message, and it will be passed through as an error for the parameter.
 If you need to do further validation with your parameter, the validator can be passed to the block:
 
 ```ruby
-
 param :number, Integer, required: true do |validator|
   validator.param :digit, Integer, min: params[:number]
+end
+```
+
+If you need to run some code in the route context, you can just use the `block` keyword:
+
+```ruby
+block do |validator|
+  #...
+  validator.param :val, Integer
 end
 ```
 

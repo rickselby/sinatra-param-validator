@@ -24,6 +24,10 @@ module Sinatra
         @errors[key] = @errors.fetch(key, []).concat(Array(error))
       end
 
+      def block(&block)
+        run_block :block, block
+      end
+
       def param(key, type, message: nil, **args, &block)
         parameter = Parameter.new(@context.params[key], type, **args)
         @context.params[key] = parameter.coerced if @context.params.key?(key) && parameter.coerced
