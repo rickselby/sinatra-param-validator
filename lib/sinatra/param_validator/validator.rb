@@ -15,8 +15,8 @@ module Sinatra
         raise ValidationFailedError, @errors
       end
 
-      def run(context)
-        @errors = Parser.new(@definition, context).errors
+      def run(context, *args)
+        @errors = Parser.new(@definition, context, *args).errors
       end
 
       def success?

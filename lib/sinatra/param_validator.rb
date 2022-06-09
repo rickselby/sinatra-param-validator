@@ -3,6 +3,7 @@
 require_relative 'param_validator/camelize'
 require_relative 'param_validator/definitions'
 require_relative 'param_validator/helpers'
+require_relative 'param_validator/identifier'
 require_relative 'param_validator/parser'
 require_relative 'param_validator/snake_case'
 require_relative 'param_validator/validator'
@@ -15,6 +16,10 @@ module Sinatra
 
     def validator(identifier, &definition)
       settings.validator_definitions.add(identifier, definition)
+    end
+
+    def vi(identifier, *args)
+      Identifier.new(identifier, *args)
     end
 
     class << self

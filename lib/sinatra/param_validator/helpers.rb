@@ -13,10 +13,11 @@ module Sinatra
         raise "Filter params failed: #{e}"
       end
 
-      def validate(klass, identifier, args = {})
-        definition = settings.validator_definitions.get(identifier)
+      def validate(klass, identifier)
+        identifier = Identifier.new(identifier) if identifier.is_a? Symbol
+        definition = settings.validator_definitions.get(identifier.identifier)
         validator = klass.new(&definition)
-        validator.run(self, *args)
+        validator.run(self, *identifier.args)
         validator.handle_failure(self) unless validator.success?
       end
     end
