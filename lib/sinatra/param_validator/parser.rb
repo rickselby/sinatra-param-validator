@@ -21,11 +21,11 @@ module Sinatra
 
       def param(key, type, message: nil, **args, &block) # rubocop:disable Metrics/AbcSize
         parameter = Parameter.new(@context.params[key], type, **args)
-        @context.params[key] = parameter.coerced if @context.params.key? key
+        @context.params[key] = parameter.coerced if @context.params.key?(key) && parameter.coerced
         if parameter.valid?
           @context.instance_exec(&block) if block
         else
-          @errors[key] = (@errors[key] || []).concat(Array(message || parameter.errors))
+          @errors[key] = @errors.fetch(key, []).concat(Array(message || parameter.errors))
         end
       rescue NameError
         raise 'Invalid parameter type'
