@@ -19,7 +19,7 @@ module Sinatra
         instance_exec({}, &definition)
       end
 
-      def param(key, type, message: nil, **args, &block)
+      def param(key, type, message: nil, **args, &block) # rubocop:disable Metrics/AbcSize
         parameter = Parameter.new(@context.params[key], type, **args)
         @context.params[key] = parameter.coerced if @context.params.key? key
         if parameter.valid?
