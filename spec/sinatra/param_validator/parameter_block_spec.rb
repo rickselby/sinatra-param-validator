@@ -3,15 +3,14 @@
 require 'sinatra/test_helpers'
 
 # Test that a custom message gets passed through to the exception
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
-        param :max, Integer do
+        param :val, Integer do
           raise 'This block has been called'
         end
       end
@@ -23,10 +22,10 @@ describe Sinatra::ParamValidator do
   end
 
   it 'runs the code in the block if the validator passes' do
-    expect { post '/', { max: 20 } }.to raise_error 'This block has been called'
+    expect { post '/', { val: 20 } }.to raise_error 'This block has been called'
   end
 
   it 'does not run the code in the block if the validator fails' do
-    expect { post '/', { max: 'foo' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
+    expect { post '/', { val: 'foo' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 end

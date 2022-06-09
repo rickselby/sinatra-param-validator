@@ -2,12 +2,11 @@
 
 require 'sinatra/test_helpers'
 
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
         param :array, Array

@@ -3,13 +3,12 @@
 require 'sinatra/test_helpers'
 
 # Test that a custom message gets passed through to the exception
-describe Sinatra::ParamValidator do
+describe Sinatra::ParamValidator::Validator do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     local_min = min
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do |x|
         param :val, Integer, min: x

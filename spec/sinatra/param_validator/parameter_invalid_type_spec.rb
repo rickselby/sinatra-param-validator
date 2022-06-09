@@ -2,16 +2,15 @@
 
 require 'sinatra/test_helpers'
 
-# Test that an invalid coercion raises a validation error
-describe Sinatra::ParamValidator do
+# Test that an invalid type raises a type error
+describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
   before do
-    klass = described_class
     mock_app do
-      register klass
+      register Sinatra::ParamValidator
 
       validator :identifier do
-        param :max, Integer, required: true
+        param :val, :invalid, required: true
       end
 
       post '/', validate: :identifier do
@@ -21,6 +20,6 @@ describe Sinatra::ParamValidator do
   end
 
   it 'raises an error for an invalid parameter type' do
-    expect { post '/', { max: 'foo' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
+    expect { post '/', { val: '10' } }.to raise_error 'Invalid parameter type'
   end
 end
