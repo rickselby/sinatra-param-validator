@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Add `default` option for parameters
+
 ## [0.6.0] - 2022-06-09
 
 - Add `block` to run blocks of code in the route context

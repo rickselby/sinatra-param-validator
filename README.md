@@ -69,6 +69,8 @@ param :number, Integer, required: true, in: 0..100
 
 All parameters have the following validations available:
 
+* `default`
+  * Set a default value if this parameter was not provided 
 * `nillable`
   * If this is set, all other validations are skipped if the value is nil
 * `required`

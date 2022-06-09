@@ -28,9 +28,9 @@ module Sinatra
         run_block :block, block
       end
 
-      def param(key, type, message: nil, **args, &block)
+      def param(key, type, default: nil, message: nil, **args, &block)
         parameter = Parameter.new(@context.params[key], type, **args)
-        @context.params[key] = parameter.coerced if @context.params.key?(key) && parameter.coerced
+        update_params_hash key, parameter, default
         if parameter.valid?
           run_block(key, block) if block
         else
@@ -50,11 +50,21 @@ module Sinatra
         raise 'Invalid rule type'
       end
 
+      private
+
       def run_block(key, block)
         args = block.arity == 1 ? [self] : []
         @context.instance_exec(*args, &block)
       rescue InvalidParameterError => e
         add_error key, e.message
+      end
+
+      def update_params_hash(key, parameter, default)
+        if @context.params.key?(key)
+          @context.params[key] = parameter.coerced if parameter.coerced
+        else
+          @context.params[key] = default unless default.nil?
+        end
       end
     end
   end
