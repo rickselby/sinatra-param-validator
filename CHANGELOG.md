@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.4.0] - 2022-06-09
+
 - Allow custom error messages to be used when validation fails
 - Ensure running multiple validations for a single parameter merges the errors correctly
 - Allow validations to run code if successful
