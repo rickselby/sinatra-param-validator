@@ -86,6 +86,14 @@ All parameters have the following validations available:
 
 * `min` / `max`
 
+## Custom Messages
+
+It is possible to return a custom error message when a validation fails:
+
+```ruby
+param :number, Integer, required: true, message: 'The number is required'
+```
+
 ## Rules
 
 Rules work on multiple parameters:

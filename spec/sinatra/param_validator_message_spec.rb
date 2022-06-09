@@ -11,7 +11,7 @@ describe Sinatra::ParamValidator do
       register klass
 
       validator :identifier do
-        param :max, :invalid, required: true
+        param :max, Integer, required: true, message: 'Sample Error Message'
       end
 
       post '/', validate: :identifier do
@@ -20,7 +20,9 @@ describe Sinatra::ParamValidator do
     end
   end
 
-  it 'raises an error for an invalid parameter type' do
-    expect { post '/', { max: '10' } }.to raise_error 'Invalid parameter type'
+  it 'passes the message back with the exception' do
+    expect { post '/' }.to raise_error(an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
+                                         having_attributes(errors: { max: 'Sample Error Message' })
+                                       ))
   end
 end

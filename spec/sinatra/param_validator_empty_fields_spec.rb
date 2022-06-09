@@ -2,7 +2,6 @@
 
 require 'sinatra/test_helpers'
 
-# Test we can use a coerced parameter in a later validation
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do
@@ -22,7 +21,7 @@ describe Sinatra::ParamValidator do
       end
 
       post '/', validate: :identifier do
-        'OK'.to_json
+        params.to_json
       end
     end
   end
@@ -30,6 +29,11 @@ describe Sinatra::ParamValidator do
   it 'returns OK for no fields' do
     post '/'
     expect(last_response).to be_ok
+  end
+
+  it 'does not create params when they are not given' do
+    post '/'
+    expect(last_response.body).to eq({}.to_json)
   end
 
   it 'returns OK for empty fields' do

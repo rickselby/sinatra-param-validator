@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Allow custom error messages to be used when validation fails
+
 ## [0.3.0] - 2022-06-08
 
 - Don't create entries in `params` for parameters that are not passed
