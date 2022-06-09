@@ -102,6 +102,16 @@ param :number, Integer, required: true, message: 'The number is required'
 param :number, Integer, min: 100, message: 'The number is not large enough'
 ```
 
+## Validation blocks
+
+It is possible to run code after a validation succeeds, by passing a block to `param`:
+
+```ruby
+param :number, Integer, required: true do
+  # ...
+end
+```
+
 ## Rules
 
 Rules work on multiple parameters:
