@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.8.0] - 2022-07-09
+
+- Add form helpers for form validator
+
 ## [0.7.0] - 2022-06-09
 
 - Add `default` option for parameters
