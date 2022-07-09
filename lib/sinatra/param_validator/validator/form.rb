@@ -5,6 +5,33 @@ module Sinatra
     class Validator
       # A form validator
       class Form < Validator
+        # Helpers for Sinatra templates
+        module Helpers
+          def form_values(hash)
+            hash = IndifferentHash[hash]
+            flash.now[:params] = flash.now.key?(:params) ? hash.merge(flash.now[:params]) : hash
+          end
+
+          def form_value(field)
+            flash[:params]&.fetch(field, nil)
+          end
+
+          def form_error?(field = nil)
+            return !flash[:form_errors].nil? && !flash[:form_errors]&.empty? if field.nil?
+
+            (flash[:form_errors] || {}).key?(field)
+          end
+
+          def form_errors(field)
+            (flash[:form_errors] || {}).fetch(field, [])
+          end
+
+          def invalid_feedback(field, default = nil)
+            fields = Array(field)
+            fields.any? { |f| form_error? f } ? fields.map { |f| form_errors f }.flatten.join('<br />') : default
+          end
+        end
+
         def handle_failure(context)
           case context.request.preferred_type.to_s
           when 'application/json' then return json_failure(context)
