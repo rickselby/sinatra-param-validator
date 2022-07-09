@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.9.0] - 2022-07-09
+
+- Change parser to parse the definition outside of the initialize block
+
 ## [0.8.0] - 2022-07-09
 
 - Add form helpers for form validator
