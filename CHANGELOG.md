@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.10.0] - 2022-07-12
+
+- Remove the `block` option from validators
+
 ## [0.9.0] - 2022-07-09
 
 - Change parser to parse the definition outside of the initialize block
