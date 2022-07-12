@@ -126,15 +126,6 @@ param :number, Integer, required: true do |validator|
 end
 ```
 
-If you need to run some code in the route context, you can just use the `block` keyword:
-
-```ruby
-block do |validator|
-  #...
-  validator.param :val, Integer
-end
-```
-
 ## Rules
 
 Rules work on multiple parameters:

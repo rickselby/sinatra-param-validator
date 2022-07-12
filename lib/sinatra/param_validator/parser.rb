@@ -28,10 +28,6 @@ module Sinatra
         @errors[key] = @errors.fetch(key, []).concat(Array(error))
       end
 
-      def block(&block)
-        run_block :block, block
-      end
-
       def param(key, type, default: nil, message: nil, **args, &block)
         parameter = Parameter.new(@context.params[key], type, **args)
         update_params_hash key, parameter, default
