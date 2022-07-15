@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.11.0] - 2022-07-15
+
+- Fix setting param values to false
+
 ## [0.10.0] - 2022-07-12
 
 - Remove the `block` option from validators
