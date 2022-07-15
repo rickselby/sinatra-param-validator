@@ -61,7 +61,7 @@ module Sinatra
 
       def update_params_hash(key, parameter, default)
         if @context.params.key?(key)
-          @context.params[key] = parameter.coerced if parameter.coerced
+          @context.params[key] = parameter.coerced unless parameter.coerced.nil?
         elsif !default.nil?
           @context.params[key] = default.respond_to?(:call) ? default.call : default
         end
