@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.12.0] - 2022-07-15
+
+- Switch from a delegator to extending the context
+
 ## [0.11.0] - 2022-07-15
 
 - Fix setting param values to false
