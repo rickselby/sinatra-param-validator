@@ -2,12 +2,13 @@
 
 require 'sinatra/test_helpers'
 
-# Test that an invalid coercion raises a validation error
+# Test that instance variables can be passed around
+# rubocop:disable RSpec/InstanceVariable
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do
     mock_app do
-      register Sinatra::ParamValidator
+      register described_class
 
       validator :set_foo do
         @foo = 'foo'
@@ -27,3 +28,4 @@ describe Sinatra::ParamValidator do
     expect(post('/').body).to eq 'foo'
   end
 end
+# rubocop:enable RSpec/InstanceVariable
