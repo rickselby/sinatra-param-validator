@@ -17,6 +17,8 @@ module Sinatra
 
       def run(context, *args)
         @errors = Parser.new(context).parse(@definition, *args).errors
+      rescue InvalidParameterError => e
+        @errors[:general] = [e.message]
       end
 
       def success?
