@@ -19,7 +19,7 @@ module Sinatra
         if parameter.valid?
           _run_block(key, block) if block
         else
-          _add_error key, message || parameter.errors
+          _handle_error key, message || parameter.errors
         end
       rescue NameError
         raise 'Invalid parameter type'
@@ -27,10 +27,7 @@ module Sinatra
 
       def rule(name, *args, **kwargs)
         rule = Rule.new(name, params, *args, **kwargs)
-        unless rule.passes?
-          @_validator_errors[:rules] ||= []
-          @_validator_errors[:rules].push(rule.errors)
-        end
+        _handle_error :rules, rule.errors unless rule.passes?
       rescue NameError
         raise 'Invalid rule type'
       end
@@ -43,7 +40,9 @@ module Sinatra
         validator.handle_failure(self) unless validator.success?
       end
 
-      def _add_error(key, error)
+      def _handle_error(key, error)
+        raise InvalidParameterError unless defined? @_validator_errors
+
         @_validator_errors[key] = @_validator_errors.fetch(key, []).concat(Array(error))
       end
 
@@ -51,7 +50,7 @@ module Sinatra
         args = block.arity == 1 ? [self] : []
         instance_exec(*args, &block)
       rescue InvalidParameterError => e
-        _add_error key, e.message
+        _handle_error key, e.message
       end
 
       def _update_params_hash(key, parameter, default)

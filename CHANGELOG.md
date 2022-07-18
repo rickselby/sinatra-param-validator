@@ -1,6 +1,8 @@
 ## [Unreleased]
 
 - Fix parameter coercion if a parameter is validated multiple times
+- Refactor `param` and `rule` functions into helpers
+- Allow `param` and `rule` to be run independently
 
 ## [0.13.0] - 2022-07-15
 
