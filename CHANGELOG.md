@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.13.0] - 2022-07-15
+
+- Capture `InvalidParameterError`s raised when running the parser 
+
 ## [0.12.0] - 2022-07-15
 
 - Switch from a delegator to extending the context
