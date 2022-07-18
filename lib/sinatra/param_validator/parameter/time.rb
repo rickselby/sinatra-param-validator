@@ -15,6 +15,7 @@ module Sinatra
 
         def coerce(value)
           return nil if value.nil?
+          return value if value.is_a? ::Time
 
           ::Time.parse(value)
         end

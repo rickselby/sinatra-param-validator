@@ -29,6 +29,13 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Float do
       end
     end
 
+    # Check that previously coerced values do not fail if revalidated
+    context 'with a float' do
+      let(:value) { 1.23 }
+
+      it { is_expected.to eq value }
+    end
+
     it_behaves_like 'it coerces nil to nil'
   end
 

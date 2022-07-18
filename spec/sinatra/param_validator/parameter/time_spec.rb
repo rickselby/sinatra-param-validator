@@ -20,6 +20,13 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Time do
       end
     end
 
+    # Check that previously coerced values do not fail if revalidated
+    context 'with a time' do
+      let(:value) { Time.new(2022, 5, 17, 11, 30) }
+
+      it { is_expected.to eq value }
+    end
+
     %w[foo].each do |string|
       context "with the string #{string}" do
         let(:value) { string }
