@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Fix parameter coercion if a parameter is validated multiple times
+
 ## [0.13.0] - 2022-07-15
 
 - Capture `InvalidParameterError`s raised when running the parser 

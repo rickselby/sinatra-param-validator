@@ -29,6 +29,13 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
       end
     end
 
+    # Check that previously coerced values do not fail if revalidated
+    context 'with an integer' do
+      let(:value) { 123 }
+
+      it { is_expected.to eq value }
+    end
+
     it_behaves_like 'it coerces nil to nil'
   end
 

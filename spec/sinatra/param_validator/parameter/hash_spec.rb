@@ -19,11 +19,18 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Hash do
     end
 
     [{ a: 1, b: 2 }, { c: :foo }].each do |hash|
-      context "with the array #{hash}" do
+      context "with the hash #{hash}" do
         let(:value) { hash }
 
         it { is_expected.to eq(hash) }
       end
+    end
+
+    # Check that previously coerced values do not fail if revalidated
+    context 'with a hash' do
+      let(:value) { { a: :a } }
+
+      it { is_expected.to eq value }
     end
 
     it_behaves_like 'it coerces nil to nil'
