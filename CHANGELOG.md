@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Pass message to raised exception
+
 ## [0.14.0] - 2022-07-15
 
 - Fix parameter coercion if a parameter is validated multiple times

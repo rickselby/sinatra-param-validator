@@ -41,7 +41,7 @@ module Sinatra
       end
 
       def _handle_error(key, error)
-        raise InvalidParameterError unless defined? @_validator_errors
+        raise InvalidParameterError, error unless defined? @_validator_errors
 
         @_validator_errors[key] = @_validator_errors.fetch(key, []).concat(Array(error))
       end
