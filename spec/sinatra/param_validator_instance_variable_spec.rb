@@ -7,8 +7,9 @@ require 'sinatra/test_helpers'
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
   before do
+    klass = described_class
     mock_app do
-      register described_class
+      register klass
 
       validator :set_foo do
         @foo = 'foo'
