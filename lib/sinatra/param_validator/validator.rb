@@ -16,7 +16,9 @@ module Sinatra
       end
 
       def run(context, *args)
-        @errors = Parser.new(context).parse(@definition, *args).errors
+        context.instance_variable_set(:@_validator_errors, {})
+        context.instance_exec(*args, &@definition)
+        @errors = context.remove_instance_variable(:@_validator_errors)
       rescue InvalidParameterError => e
         @errors[:general] = [e.message]
       end
