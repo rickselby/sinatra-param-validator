@@ -25,9 +25,13 @@ module Sinatra
         raise 'Invalid parameter type'
       end
 
-      def rule(name, *args, **kwargs)
+      def rule(name, *args, **kwargs, &block)
         rule = Rule.new(name, params, *args, **kwargs)
-        _handle_error :rules, rule.errors unless rule.passes?
+        if rule.passes?
+          _run_block(:rules, block) if block
+        else
+          _handle_error :rules, rule.errors unless rule.passes?
+        end
       rescue NameError
         raise 'Invalid rule type'
       end
