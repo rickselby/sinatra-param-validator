@@ -77,7 +77,8 @@ All parameters have the following validations available:
 * `required`
   * The parameter must be present and cannot be nil
 * `transform`
-  * Run a proc or a lambda against the validated parameter, allowing it to be changed
+  * Run a method against the validated parameter, allowing it to be changed
+  * Anything that responds to `to_proc` will work; procs, lambdas, symbols...
 * `in`
   * The value is in the given array / range
 * `is`
