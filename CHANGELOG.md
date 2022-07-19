@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - Pass message to raised exception
+- Allow rules to run blocks
 
 ## [0.14.0] - 2022-07-15
 
