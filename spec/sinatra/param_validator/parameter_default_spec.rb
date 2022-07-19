@@ -27,4 +27,9 @@ describe Sinatra::ParamValidator::Parameter do
     post '/'
     expect(last_response.body).to eq({ val: 40 }.to_json)
   end
+
+  it 'does change the value if only the key is passed' do
+    post '/', { val: nil }
+    expect(last_response.body).to eq({ val: 40 }.to_json)
+  end
 end

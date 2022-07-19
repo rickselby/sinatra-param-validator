@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- Set default value for nil parameters
+
 ## [0.15.0] - 2022-07-19
 
 - Pass message to raised exception
