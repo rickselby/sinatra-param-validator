@@ -10,8 +10,8 @@ describe Sinatra::ParamValidator::Parameter do
       register Sinatra::ParamValidator
 
       validator :identifier do
-        param :val, Integer do
-          raise 'This block has been called'
+        param :val, Integer, default: 12 do
+          raise "Value is #{params[:val]}"
         end
       end
 
@@ -22,7 +22,7 @@ describe Sinatra::ParamValidator::Parameter do
   end
 
   it 'runs the code in the block if the validator passes' do
-    expect { post '/', { val: 20 } }.to raise_error 'This block has been called'
+    expect { post '/', { val: 20 } }.to raise_error 'Value is 20'
   end
 
   it 'does not run the code in the block if the validator fails' do
@@ -30,6 +30,6 @@ describe Sinatra::ParamValidator::Parameter do
   end
 
   it 'runs the code in the block even if the parameter was not provided' do
-    expect { post '/' }.to raise_error 'This block has been called'
+    expect { post '/' }.to raise_error 'Value is 12'
   end
 end
