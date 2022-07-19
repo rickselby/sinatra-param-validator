@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+- `param` should return the coerced value
+
 ## [0.16.1] - 2022-07-19
 
 - Fix URIs in gemspec
