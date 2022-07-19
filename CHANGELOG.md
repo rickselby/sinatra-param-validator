@@ -1,6 +1,7 @@
 ## [Unreleased]
 
 - `param` should return the coerced value
+- Add `transform` to alter a validated parameter
 
 ## [0.16.1] - 2022-07-19
 

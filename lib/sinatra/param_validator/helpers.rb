@@ -13,10 +13,10 @@ module Sinatra
         raise "Filter params failed: #{e}"
       end
 
-      def param(key, type, default: nil, message: nil, **args, &block)
+      def param(key, type, default: nil, message: nil, transform: nil, **args, &block) # rubocop:disable Metrics/ParameterLists
         parameter = Parameter.new(params[key], type, **args)
-        _update_params_hash key, parameter, default
         if parameter.valid?
+          _update_params_hash key, parameter, default, transform
           _run_block(key, block) if block
         else
           _handle_error key, message || parameter.errors
@@ -58,16 +58,18 @@ module Sinatra
         _handle_error key, e.message
       end
 
-      def _update_params_hash(key, parameter, default)
+      def _update_params_hash(key, parameter, default, transform)
         if !params.key?(key) || params[key].nil?
           _set_param_to_default key, default unless default.nil?
         else
-          _set_param_to_coerced key, parameter
+          _set_param_to_coerced key, parameter, transform
         end
       end
 
-      def _set_param_to_coerced(key, parameter)
-        params[key] = parameter.coerced unless parameter.coerced.nil?
+      def _set_param_to_coerced(key, parameter, transform)
+        return if parameter.coerced.nil?
+
+        params[key] = transform.nil? ? parameter.coerced : transform.call(parameter.coerced)
       end
 
       def _set_param_to_default(key, default)
