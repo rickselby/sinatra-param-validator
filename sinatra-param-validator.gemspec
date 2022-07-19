@@ -9,13 +9,13 @@ Gem::Specification.new do |spec|
   spec.email = ['rick@selby-family.co.uk']
 
   spec.summary = 'Validation of parameters for Sinatra'
-  spec.homepage = 'https://github.com/rickselby/sinatra-param_validator-validator'
+  spec.homepage = 'https://github.com/rickselby/sinatra-param-validator'
   spec.license = 'MIT'
   spec.required_ruby_version = '>= 2.6.0'
 
-  spec.metadata['changelog_uri'] = 'https://github.com/rickselby/sinatra-param_validator-validator/CHANGELOG.md'
+  spec.metadata['changelog_uri'] = 'https://github.com/rickselby/sinatra-para-validator/CHANGELOG.md'
   spec.metadata['homepage_uri'] = spec.homepage
-  spec.metadata['source_code_uri'] = 'https://github.com/rickselby/sinatra-param_validator-validator'
+  spec.metadata['source_code_uri'] = 'https://github.com/rickselby/sinatra-param-validator'
   spec.metadata['rubygems_mfa_required'] = 'true'
 
   # Specify which files should be added to the gem when it is released.
