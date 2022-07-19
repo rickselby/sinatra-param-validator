@@ -59,10 +59,18 @@ module Sinatra
 
       def _update_params_hash(key, parameter, default)
         if params.key?(key) && !params[key].nil?
-          params[key] = parameter.coerced unless parameter.coerced.nil?
+          _set_param_to_coerced key, parameter
         elsif !default.nil?
-          params[key] = default.respond_to?(:call) ? default.call : default
+          _set_param_to_default key, default
         end
+      end
+
+      def _set_param_to_coerced(key, parameter)
+        params[key] = parameter.coerced unless parameter.coerced.nil?
+      end
+
+      def _set_param_to_default(key, default)
+        params[key] = default.respond_to?(:call) ? default.call : default
       end
     end
   end
