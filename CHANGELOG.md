@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.16.0] - 2022-07-19
+
 - Set default value for nil parameters
 
 ## [0.15.0] - 2022-07-19
