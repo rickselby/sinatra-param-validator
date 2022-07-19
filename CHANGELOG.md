@@ -1,5 +1,9 @@
 ## [Unreleased]
 
+## [0.16.1] - 2022-07-19
+
+- Fix URIs in gemspec
+
 ## [0.16.0] - 2022-07-19
 
 - Set default value for nil parameters
