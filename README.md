@@ -76,6 +76,8 @@ All parameters have the following validations available:
   * If this is set, all other validations are skipped if the value is nil
 * `required`
   * The parameter must be present and cannot be nil
+* `transform`
+  * Run a proc or a lambda against the validated parameter, allowing it to be changed
 * `in`
   * The value is in the given array / range
 * `is`
@@ -88,6 +90,41 @@ All parameters have the following validations available:
 `Date`, `Time`, `Float` and `Integer` have the following validations:
 
 * `min` / `max`
+
+### Running as a helper
+
+`param` is available as a helper in routes, and will raise `Sinatra::ParamValidator::InvalidParameterError` if validation fails.
+It will return the parsed parameter, after coercion, defaults and transformations have been applied.
+
+```ruby
+get '/page' do
+  param :a, String
+end
+```
+
+## Rules
+
+Rules work on multiple parameters:
+
+```ruby
+rule :all_or_none_of, :a, :b
+```
+
+* `all_or_none_of`
+* `any_of`
+  * At least one of the given fields must be present
+* `one_of`
+  * Only one of the given fields can be present
+
+### Running as a helper
+
+`rule` is available as a helper in routes, and will raise `Sinatra::ParamValidator::InvalidParameterError` if validation fails.
+
+```ruby
+get '/page' do
+  rule :any_of, :a, :b
+end
+```
 
 ## Custom Messages
 
@@ -113,6 +150,10 @@ It is possible to run code after a validation succeeds, by passing a block to `p
 param :number, Integer, required: true do
   # ...
 end
+
+rule :any_of, :a, :b do
+  # ...
+end
 ```
 
 If you wish to indicate a validation failure within a block, raise `Sinatra::ParameterValidator::InvalidParameterError`
@@ -126,20 +167,6 @@ param :number, Integer, required: true do |validator|
 end
 ```
 
-## Rules
-
-Rules work on multiple parameters:
-
-```ruby
-rule :all_or_none_of, :a, :b
-```
-
-* `all_or_none_of`
-* `any_of`
-  * At least one of the given fields must be present
-* `one_of`
-  * Only one of the given fields can be present
-
 ## Validator Types
 
 The default validator will raise `Sinatra::ParamValidator::ValidationFailedError` when validation fails.
@@ -149,7 +176,7 @@ There are two other provided validators, that handle failure differently:
 * `url_param`
   * will `halt 403`
 * `form`
-  * if [sinatra-flash](https://github.com/SFEley/sinatra-flash) is available, it will flash the errors and `redirect back`
+  * if [sinatra-flash](https://rubygems.org/gems/sinatra-flash) is available, it will flash the errors and `redirect back`
   * will provide a JSON object with errors to an XHR request
   * will `halt 400`
 
@@ -164,6 +191,55 @@ get '/user/:id', validate_url_param: :user_id do
   # ...
 end
 ```
+
+### Form Helpers
+
+There are some general helpers for handling values after validation.
+These require the [sinatra-flash](https://rubygems.org/gems/sinatra-flash) gem.
+
+* `form_values(hash)`
+  * Set the values that will be returned by `form_value`.
+  * These will be overridden by any values flashed to the session in the `:params` hash
+* `form_value(field)`
+  * Get the form value for the given field
+* `form_error?(field = nil)`
+  * With a field: returns if that field had any validation errors
+  * Without a field: returns if any field had validation errors
+* `form_errors(field)`
+  * Get the list of validation errors for the given field
+* `invalid_feedback(field, default = nil)`
+  * Get the invalid feedback (error message) for the given field, defaulting to the default parameter.
+
+#### Usage
+
+For a form to edit something, you can define the values that the form should use:
+
+```ruby
+get '/edit/:thing' do
+  thing = #...
+  form_values thing
+end
+```
+
+This is an example form input with bootstrap styling:
+
+```html
+<form method="post" <%== 'class="was-validated"' if form_error? %>>
+  <div class="mb-3">
+    <label class="form-label" for="name">Name</label>
+    <input type="text" name="name" id="name" 
+           class="form-control <%= 'is-invalid' if form_error? :name %>"
+           value="<%= form_value :name %>">
+    <div class="invalid-feedback">
+      <%== invalid_feedback :name, 'Please provide a name.' %>
+    </div>
+  </div>
+</form>
+```
+
+When the form is submitted, validation may fail, and the page will redirect back to the edit form.
+The redirect will flash the submitted parameters.
+`form_value` will now prefer the flashed parameters over the original values for `thing`.
 
 ## Validators with parameters
 
