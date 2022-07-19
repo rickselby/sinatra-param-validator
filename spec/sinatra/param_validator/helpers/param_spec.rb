@@ -10,10 +10,14 @@ RSpec.describe Sinatra::ParamValidator::Helpers, '.param' do
   end
 
   context 'with the parameter' do
-    let(:params) { { foo: 'foo' } }
+    let(:params) { { foo: '123' } }
 
     it 'does not raise an error if the validation passes' do
-      expect { param :foo, String, required: true }.not_to raise_error
+      expect { param :foo, Integer, required: true }.not_to raise_error
+    end
+
+    it 'returns the coerced parameter' do
+      expect(param(:foo, Integer, required: true)).to eq 123
     end
   end
 end

@@ -21,6 +21,7 @@ module Sinatra
         else
           _handle_error key, message || parameter.errors
         end
+        params[key]
       rescue NameError
         raise 'Invalid parameter type'
       end
