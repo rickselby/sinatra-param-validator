@@ -69,7 +69,7 @@ module Sinatra
       def _set_param_to_coerced(key, parameter, transform)
         return if parameter.coerced.nil?
 
-        params[key] = transform.nil? ? parameter.coerced : transform.call(parameter.coerced)
+        params[key] = transform.nil? ? parameter.coerced : transform.to_proc.call(parameter.coerced)
       end
 
       def _set_param_to_default(key, default)
