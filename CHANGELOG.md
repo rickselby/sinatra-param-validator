@@ -1,15 +1,17 @@
 ## [Unreleased]
 
+## [0.15.0] - 2022-07-19
+
 - Pass message to raised exception
 - Allow rules to run blocks
 
-## [0.14.0] - 2022-07-15
+## [0.14.0] - 2022-07-18
 
 - Fix parameter coercion if a parameter is validated multiple times
 - Refactor `param` and `rule` functions into helpers
 - Allow `param` and `rule` to be run independently
 
-## [0.13.0] - 2022-07-15
+## [0.13.0] - 2022-07-18
 
 - Capture `InvalidParameterError`s raised when running the parser 
 
