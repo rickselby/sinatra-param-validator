@@ -1,23 +1,8 @@
 ---
-require:
-  - rubocop-performance
-  - rubocop-rake
-  - rubocop-rspec
+inherit_gem:
+  rubocop-rickselby:
+    - config/default.yml
+    - config/rspec.yml
 
 AllCops:
-  DisplayStyleGuide: true
-  NewCops: enable
-  TargetRubyVersion: 2.6
-
-# Disable block-length check for rspec and gemspec
-Metrics/BlockLength:
-  Exclude:
-    - 'spec/**/*.rb'
-    - '*.gemspec'
-
-# Extend permitted line length
-Layout/LineLength:
-  Max: 120
-
-RSpec/NestedGroups:
-  Max: 4
+  TargetRubyVersion: 3.0

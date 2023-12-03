@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
-require 'time'
-require_relative 'common'
+require "time"
+require_relative "common"
 
 module Sinatra
   module ParamValidator

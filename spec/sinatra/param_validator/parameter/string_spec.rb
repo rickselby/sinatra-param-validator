@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'shared_examples'
+require_relative "shared_examples"
 
 RSpec.describe Sinatra::ParamValidator::Parameter::String do
   subject(:valid) { klass.valid? }
 
   let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
-  let(:value) { 'string' }
+  let(:value) { "string" }
 
-  describe 'coerce' do
+  describe "coerce" do
     subject(:coerce) { klass.coerced }
 
     [123, -456, 78.9].each do |number|
@@ -28,94 +28,94 @@ RSpec.describe Sinatra::ParamValidator::Parameter::String do
       end
     end
 
-    it_behaves_like 'it coerces nil to nil'
+    it_behaves_like "it coerces nil to nil"
   end
 
-  describe 'format' do
+  describe "format" do
     let(:options) { { format: /str.*/ } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid format' do
+    context "with an invalid format" do
       let(:options) { { format: /foo.*/ } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'is' do
-    let(:options) { { is: 'string' } }
+  describe "is" do
+    let(:options) { { is: "string" } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
-      let(:options) { { is: 'foo' } }
+    context "with an invalid option" do
+      let(:options) { { is: "foo" } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'in' do
+  describe "in" do
     let(:options) { { in: %w[string other] } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { in: %w[foo bar] } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'required' do
+  describe "required" do
     let(:options) { { required: true } }
 
     it { is_expected.to be true }
 
-    context 'without a value' do
+    context "without a value" do
       let(:value) { nil }
 
       it { is_expected.to be false }
     end
 
-    context 'with an empty value' do
-      let(:value) { '' }
+    context "with an empty value" do
+      let(:value) { "" }
 
       it { is_expected.to be true }
     end
   end
 
-  describe 'max_length' do
+  describe "max_length" do
     let(:options) { { max_length: 10 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid maximum' do
+    context "with an invalid maximum" do
       let(:options) { { max_length: 5 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'min_length' do
+  describe "min_length" do
     let(:options) { { min_length: 5 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid maximum' do
+    context "with an invalid maximum" do
       let(:options) { { min_length: 10 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 end

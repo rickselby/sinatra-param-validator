@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 describe Sinatra::ParamValidator::Validator::UrlParam do
   include Sinatra::TestHelpers
@@ -12,14 +12,14 @@ describe Sinatra::ParamValidator::Validator::UrlParam do
         param :number, Integer, required: true
       end
 
-      post '/', validate_url_param: :identifier do
-        'OK'.to_json
+      post "/", validate_url_param: :identifier do
+        "OK".to_json
       end
     end
   end
 
-  it 'returns forbidden for an invalid validation' do
-    post '/', {}
+  it "returns forbidden for an invalid validation" do
+    post "/", {}
     expect(last_response).to be_forbidden
   end
 end

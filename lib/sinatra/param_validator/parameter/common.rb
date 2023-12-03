@@ -27,7 +27,7 @@ module Sinatra
         end
 
         def validate_options
-          @options.each { |key, _| raise "Unknown option '#{key}' for #{self.class}" unless respond_to? key }
+          @options.each_key { |key| raise "Unknown option '#{key}' for #{self.class}" unless respond_to? key }
         end
         private :validate_options
 
@@ -64,7 +64,7 @@ module Sinatra
         private :nil_and_ok?
 
         def required(enabled)
-          @errors.push 'Parameter is required' if enabled && @coerced.nil?
+          @errors.push "Parameter is required" if enabled && @coerced.nil?
         end
       end
 

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 # Test that a custom message gets passed through to the exception
 describe Sinatra::ParamValidator::Validator do
@@ -14,26 +14,26 @@ describe Sinatra::ParamValidator::Validator do
         param :val, Integer, min: x
       end
 
-      post '/', validate: vi(:identifier, local_min) do
-        'OK'.to_json
+      post "/", validate: vi(:identifier, local_min) do
+        "OK".to_json
       end
     end
   end
 
   let(:min) { 10 }
 
-  it 'passes arguments to the validator' do
-    post '/', { val: 20 }
+  it "passes arguments to the validator" do
+    post "/", { val: 20 }
     expect(last_response).to be_ok
   end
 
-  context 'with a larger minimum' do
+  context "with a larger minimum" do
     let(:min) { 30 }
 
-    it 'passes arguments to the validator' do
-      expect { post '/', { val: 20 } }.to raise_error(
+    it "passes arguments to the validator" do
+      expect { post "/", { val: 20 } }.to raise_error(
         an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
-          having_attributes(errors: { val: ['Parameter cannot be less than 30'] })
+          having_attributes(errors: { val: ["Parameter cannot be less than 30"] })
         )
       )
     end

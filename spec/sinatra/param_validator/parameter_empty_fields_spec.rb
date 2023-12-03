@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
@@ -19,24 +19,24 @@ describe Sinatra::ParamValidator::Parameter do
         param :time, Time
       end
 
-      post '/', validate: :identifier do
+      post "/", validate: :identifier do
         params.to_json
       end
     end
   end
 
-  it 'returns OK for no fields' do
-    post '/'
+  it "returns OK for no fields" do
+    post "/"
     expect(last_response).to be_ok
   end
 
-  it 'does not create params when they are not given' do
-    post '/'
+  it "does not create params when they are not given" do
+    post "/"
     expect(last_response.body).to eq({}.to_json)
   end
 
-  it 'returns OK for empty fields' do
-    post '/', { array: '', bool: '', date: '', float: '', hash: '', integer: '', string: '', time: '' }
+  it "returns OK for empty fields" do
+    post "/", { array: "", bool: "", date: "", float: "", hash: "", integer: "", string: "", time: "" }
     expect(last_response).to be_ok
   end
 end

@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'shared_examples'
+require_relative "shared_examples"
 
 RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
   subject(:valid) { klass.valid? }
 
   let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
-  let(:value) { 'true' }
+  let(:value) { "true" }
 
-  describe 'coerce' do
+  describe "coerce" do
     subject(:coerce) { klass.coerced }
 
     %w[false f no n 0].each do |string|
@@ -38,55 +38,55 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Boolean do
     end
 
     # Check that previously coerced values do not fail if revalidated
-    context 'with true' do
+    context "with true" do
       let(:value) { true }
 
       it { is_expected.to eq value }
     end
 
-    context 'with false' do
+    context "with false" do
       let(:value) { false }
 
       it { is_expected.to eq value }
     end
 
-    it_behaves_like 'it coerces nil to nil'
+    it_behaves_like "it coerces nil to nil"
   end
 
-  describe 'is' do
+  describe "is" do
     let(:options) { { is: true } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { is: false } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'in' do
+  describe "in" do
     let(:options) { { in: [true] } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { in: [false] } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'required' do
+  describe "required" do
     let(:options) { { required: true } }
 
     it { is_expected.to be true }
 
-    context 'without a value' do
+    context "without a value" do
       let(:value) { nil }
 
       it { is_expected.to be false }

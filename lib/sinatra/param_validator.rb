@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'param_validator/camelize'
-require_relative 'param_validator/definitions'
-require_relative 'param_validator/helpers'
-require_relative 'param_validator/identifier'
-require_relative 'param_validator/invalid_parameter_error'
-require_relative 'param_validator/parameter'
-require_relative 'param_validator/rule'
-require_relative 'param_validator/snake_case'
-require_relative 'param_validator/validator'
-require_relative 'param_validator/version'
+require_relative "param_validator/camelize"
+require_relative "param_validator/definitions"
+require_relative "param_validator/helpers"
+require_relative "param_validator/identifier"
+require_relative "param_validator/invalid_parameter_error"
+require_relative "param_validator/parameter"
+require_relative "param_validator/rule"
+require_relative "param_validator/snake_case"
+require_relative "param_validator/validator"
+require_relative "param_validator/version"
 
 module Sinatra
   # Module to register in Sinatra app

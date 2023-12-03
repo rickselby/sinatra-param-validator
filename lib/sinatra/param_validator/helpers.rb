@@ -6,8 +6,8 @@ module Sinatra
     module Helpers
       def filter_params
         params.each do |(param, value)|
-          params[param] = nil if value == ''
-          params[param] = [] if value == ['']
+          params[param] = nil if value == ""
+          params[param] = [] if value == [""]
         end
       rescue StandardError => e
         raise "Filter params failed: #{e}"
@@ -23,7 +23,7 @@ module Sinatra
         end
         params[key]
       rescue NameError
-        raise 'Invalid parameter type'
+        raise "Invalid parameter type"
       end
 
       def rule(name, *args, **kwargs, &block)
@@ -34,7 +34,7 @@ module Sinatra
           _handle_error :rules, rule.errors unless rule.passes?
         end
       rescue NameError
-        raise 'Invalid rule type'
+        raise "Invalid rule type"
       end
 
       def validate(klass, identifier)

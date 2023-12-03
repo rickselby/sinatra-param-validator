@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
   include Sinatra::TestHelpers
@@ -12,23 +12,23 @@ describe Sinatra::ParamValidator::Rule::AllOrNoneOf do
         rule :all_or_none_of, :a, :b
       end
 
-      post '/', validate: :identifier do
-        'OK'.to_json
+      post "/", validate: :identifier do
+        "OK".to_json
       end
     end
   end
 
-  it 'passes with both params' do
-    post '/', { a: :a, b: :b }
+  it "passes with both params" do
+    post "/", { a: :a, b: :b }
     expect(last_response).to be_ok
   end
 
-  it 'fails with one param' do
-    expect { post '/', { a: :a } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
+  it "fails with one param" do
+    expect { post "/", { a: :a } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
-  it 'passes with no params' do
-    post '/'
+  it "passes with no params" do
+    post "/"
     expect(last_response).to be_ok
   end
 end

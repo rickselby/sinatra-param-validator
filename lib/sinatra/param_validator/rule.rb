@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 
-require_relative 'camelize'
-require_relative 'rule/all_or_none_of'
-require_relative 'rule/any_of'
-require_relative 'rule/one_of'
+require_relative "camelize"
+require_relative "rule/all_or_none_of"
+require_relative "rule/any_of"
+require_relative "rule/one_of"
 
 module Sinatra
   module ParamValidator
