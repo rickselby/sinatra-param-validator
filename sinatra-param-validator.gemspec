@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
   spec.summary = "Validation of parameters for Sinatra"
   spec.homepage = "https://github.com/rickselby/sinatra-param-validator"
   spec.license = "MIT"
-  spec.required_ruby_version = ">= 2.6.0"
+  spec.required_ruby_version = ">= 3.0"
 
   spec.metadata["changelog_uri"] = "https://github.com/rickselby/sinatra-para-validator/CHANGELOG.md"
   spec.metadata["homepage_uri"] = spec.homepage

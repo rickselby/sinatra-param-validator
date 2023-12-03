@@ -62,7 +62,7 @@ GEM
       rubocop-ast (>= 0.4.0)
     rubocop-rake (0.6.0)
       rubocop (~> 1.0)
-    rubocop-rickselby (0.4.0)
+    rubocop-rickselby (0.5.0)
       rubocop (~> 1.58.0)
       rubocop-performance (~> 1.19.0)
       rubocop-rake (~> 0.6.0)
@@ -93,7 +93,7 @@ DEPENDENCIES
   rack-test (~> 1.1)
   rake (~> 13.0)
   rspec (~> 3.0)
-  rubocop-rickselby (~> 0.4)
+  rubocop-rickselby (~> 0.5)
   rubocop-rspec (~> 2.0)
   sinatra-contrib (~> 2.0)
   sinatra-param-validator!
