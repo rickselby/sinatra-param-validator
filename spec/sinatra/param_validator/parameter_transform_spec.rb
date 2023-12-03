@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
@@ -9,31 +9,31 @@ describe Sinatra::ParamValidator::Parameter do
       register Sinatra::ParamValidator
 
       validator :identifier do
-        param :time, Time, transform: ->(v) { v.strftime('%H:%M') }
+        param :time, Time, transform: ->(v) { v.strftime("%H:%M") }
       end
 
-      post '/', validate: :identifier do
+      post "/", validate: :identifier do
         params.to_json
       end
     end
   end
 
-  it 'transforms the value if the parameter is valid' do
-    post '/', { time: '2022-07-19 12:59:00' }
-    expect(last_response.body).to eq({ time: '12:59' }.to_json)
+  it "transforms the value if the parameter is valid" do
+    post "/", { time: "2022-07-19 12:59:00" }
+    expect(last_response.body).to eq({ time: "12:59" }.to_json)
   end
 
-  it 'does not transform the value if the parameter is invalid' do
-    expect { post '/', { time: 'foo' } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
+  it "does not transform the value if the parameter is invalid" do
+    expect { post "/", { time: "foo" } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
-  it 'will not try to transform the value if the parameter is missing' do
-    post '/'
+  it "will not try to transform the value if the parameter is missing" do
+    post "/"
     expect(last_response.body).to eq({}.to_json)
   end
 
-  it 'will not try to transform the value if the parameter is empty' do
-    post '/', { time: nil }
+  it "will not try to transform the value if the parameter is empty" do
+    post "/", { time: nil }
     expect(last_response.body).to eq({ time: nil }.to_json)
   end
 end

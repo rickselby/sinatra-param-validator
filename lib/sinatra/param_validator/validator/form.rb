@@ -28,14 +28,14 @@ module Sinatra
 
           def invalid_feedback(field, default = nil)
             fields = Array(field)
-            fields.any? { |f| form_error? f } ? fields.map { |f| form_errors f }.flatten.join('<br />') : default
+            fields.any? { |f| form_error? f } ? fields.map { |f| form_errors f }.flatten.join("<br />") : default
           end
         end
 
         def handle_failure(context)
           case context.request.preferred_type.to_s
-          when 'application/json' then return json_failure(context)
-          when 'text/html'
+          when "application/json" then return json_failure(context)
+          when "text/html"
             return flash_failure(context) if defined? Sinatra::Flash
           end
 
@@ -50,7 +50,7 @@ module Sinatra
         private
 
         def json_failure(context)
-          context.halt 400, { error: 'Validation failed', fields: @errors }.to_json
+          context.halt 400, { error: "Validation failed", fields: @errors }.to_json
         end
 
         def flash_failure(context)

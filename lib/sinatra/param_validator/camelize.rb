@@ -5,7 +5,7 @@ module Sinatra
     # Helpers for validating parameters
     module Camelize
       def camelize(symbol)
-        symbol.to_s.split('_').map(&:capitalize).join
+        symbol.to_s.split("_").map(&:capitalize).join
       end
     end
   end

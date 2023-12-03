@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-RSpec.describe Sinatra::ParamValidator::Validator, '.define' do
+RSpec.describe Sinatra::ParamValidator::Validator, ".define" do
   subject(:validator) do
     described_class.new do
       param :boolean, :boolean, required: true
@@ -11,7 +11,7 @@ RSpec.describe Sinatra::ParamValidator::Validator, '.define' do
     end
   end
 
-  it 'is valid syntax' do
+  it "is valid syntax" do
     expect { validator }.not_to raise_error
   end
 end

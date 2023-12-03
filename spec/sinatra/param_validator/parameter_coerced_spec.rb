@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'sinatra/test_helpers'
+require "sinatra/test_helpers"
 
 # Test that an invalid coercion raises a validation error
 describe Sinatra::ParamValidator::Parameter do
@@ -13,17 +13,17 @@ describe Sinatra::ParamValidator::Parameter do
         param :flag, :boolean
       end
 
-      post '/', validate: :identifier do
+      post "/", validate: :identifier do
         params.to_json
       end
     end
   end
 
-  it 'coerces true successfully' do
-    expect(post('/', { flag: 'true' }).body).to eq({ flag: true }.to_json)
+  it "coerces true successfully" do
+    expect(post("/", { flag: "true" }).body).to eq({ flag: true }.to_json)
   end
 
-  it 'coerces false successfully' do
-    expect(post('/', { flag: 'false' }).body).to eq({ flag: false }.to_json)
+  it "coerces false successfully" do
+    expect(post("/", { flag: "false" }).body).to eq({ flag: false }.to_json)
   end
 end

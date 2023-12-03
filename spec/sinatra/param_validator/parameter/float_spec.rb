@@ -1,15 +1,15 @@
 # frozen_string_literal: true
 
-require_relative 'shared_examples'
+require_relative "shared_examples"
 
 RSpec.describe Sinatra::ParamValidator::Parameter::Float do
   subject(:valid) { klass.valid? }
 
   let(:klass) { described_class.new(value, **options) }
   let(:options) { {} }
-  let(:value) { '12.34' }
+  let(:value) { "12.34" }
 
-  describe 'coerce' do
+  describe "coerce" do
     subject(:coerce) { klass.coerced }
 
     %w[123 -456 78.9].each do |number|
@@ -30,100 +30,100 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Float do
     end
 
     # Check that previously coerced values do not fail if revalidated
-    context 'with a float' do
+    context "with a float" do
       let(:value) { 1.23 }
 
       it { is_expected.to eq value }
     end
 
-    it_behaves_like 'it coerces nil to nil'
+    it_behaves_like "it coerces nil to nil"
   end
 
-  describe 'is' do
+  describe "is" do
     let(:options) { { is: 12.34 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { is: 1.23 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'in (array)' do
+  describe "in (array)" do
     let(:options) { { in: [12.34, 56.78] } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { in: [12, 34, 56] } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'in (range)' do
+  describe "in (range)" do
     let(:options) { { in: 10..20 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid option' do
+    context "with an invalid option" do
       let(:options) { { in: 20..30 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'required' do
+  describe "required" do
     let(:options) { { required: true } }
 
     it { is_expected.to be true }
 
-    context 'without a value' do
+    context "without a value" do
       let(:value) { nil }
 
       it { is_expected.to be false }
     end
 
-    context 'with zero' do
+    context "with zero" do
       let(:value) { 0.0 }
 
       it { is_expected.to be true }
     end
   end
 
-  describe 'max' do
+  describe "max" do
     let(:options) { { max: 20 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid maximum' do
+    context "with an invalid maximum" do
       let(:options) { { max: 10 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 
-  describe 'min' do
+  describe "min" do
     let(:options) { { min: 10 } }
 
     it { is_expected.to be true }
 
-    context 'with an invalid minimum' do
+    context "with an invalid minimum" do
       let(:options) { { min: 20 } }
 
       it { is_expected.to be false }
     end
 
-    it_behaves_like 'it handles nil and nillable'
+    it_behaves_like "it handles nil and nillable"
   end
 end

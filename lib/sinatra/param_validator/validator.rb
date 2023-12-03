@@ -41,6 +41,6 @@ module Sinatra
   end
 end
 
-require_relative 'validation_failed_error'
-require_relative 'validator/form'
-require_relative 'validator/url_param'
+require_relative "validation_failed_error"
+require_relative "validator/form"
+require_relative "validator/url_param"
