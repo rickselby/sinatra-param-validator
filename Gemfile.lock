@@ -18,7 +18,7 @@ GEM
       ast (~> 2.4.1)
       racc
     racc (1.7.3)
-    rack (2.2.3)
+    rack (2.2.8)
     rack-protection (2.2.0)
       rack
     rack-test (1.1.0)
