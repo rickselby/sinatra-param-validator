@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "rack-test", "~> 1.1"
-gem "rake", "~> 13.0"
+gem "rake", "~> 13.1"
 gem "rspec", "~> 3.0"
 gem "rubocop-rickselby", "~> 0.5"
 gem "rubocop-rspec", "~> 2.0"
