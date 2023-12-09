@@ -8,6 +8,6 @@ gemspec
 gem "rack-test", "~> 1.1"
 gem "rake", "~> 13.1"
 gem "rspec", "~> 3.12"
-gem "rubocop-rickselby", "~> 0.5"
+gem "rubocop-rickselby", "~> 0.7"
 gem "rubocop-rspec", "~> 2.0"
 gem "sinatra-contrib", "~> 2.0"
