@@ -5,7 +5,7 @@ source "https://rubygems.org"
 # Specify your gem's dependencies in sinatra-param_validator-validator.gemspec
 gemspec
 
-gem "rack-test", "~> 1.1"
+gem "rack-test", "~> 2.1"
 gem "rake", "~> 13.1"
 gem "rspec", "~> 3.12"
 gem "rubocop-rickselby", "~> 0.7"
