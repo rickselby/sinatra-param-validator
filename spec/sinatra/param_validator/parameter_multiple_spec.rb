@@ -22,8 +22,9 @@ describe Sinatra::ParamValidator::Parameter do
 
   it "passes the message back with the exception" do
     expect { post "/" }.to raise_error(an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
-                                         having_attributes(errors: { val: ["Sample Error Message",
-                                                                           "Another Error Message"] })
+                                         having_attributes(errors: {
+                                                             val: ["Sample Error Message", "Another Error Message"],
+                                                           }),
                                        ))
   end
 end

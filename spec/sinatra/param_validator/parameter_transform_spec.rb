@@ -27,12 +27,12 @@ describe Sinatra::ParamValidator::Parameter do
     expect { post "/", { time: "foo" } }.to raise_error Sinatra::ParamValidator::ValidationFailedError
   end
 
-  it "will not try to transform the value if the parameter is missing" do
+  it "does not try to transform the value if the parameter is missing" do
     post "/"
     expect(last_response.body).to eq({}.to_json)
   end
 
-  it "will not try to transform the value if the parameter is empty" do
+  it "does not try to transform the value if the parameter is empty" do
     post "/", { time: nil }
     expect(last_response.body).to eq({ time: nil }.to_json)
   end

@@ -20,7 +20,7 @@ RSpec.describe Sinatra::ParamValidator::Parameter::Array do
       end
     end
 
-    [%i[a b], [:c], []].each do |array|
+    [%i[a b], %i[c], []].each do |array|
       context "with the array #{array}" do
         let(:value) { array }
 

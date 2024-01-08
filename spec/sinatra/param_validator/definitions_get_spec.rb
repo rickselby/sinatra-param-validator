@@ -8,7 +8,7 @@ describe Sinatra::ParamValidator::Definitions, ".get" do
     expect { definitions.get :foo }.not_to raise_error
   end
 
-  it "will not allow an undefined validator to be retrieved" do
+  it "does not allow an undefined validator to be retrieved" do
     expect { definitions.get :foo }.to raise_error "Unknown validator: 'foo'"
   end
 end

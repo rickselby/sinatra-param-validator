@@ -33,8 +33,8 @@ describe Sinatra::ParamValidator::Validator do
     it "passes arguments to the validator" do
       expect { post "/", { val: 20 } }.to raise_error(
         an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
-          having_attributes(errors: { val: ["Parameter cannot be less than 30"] })
-        )
+          having_attributes(errors: { val: ["Parameter cannot be less than 30"] }),
+        ),
       )
     end
   end

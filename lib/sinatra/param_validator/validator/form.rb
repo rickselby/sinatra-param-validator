@@ -28,7 +28,7 @@ module Sinatra
 
           def invalid_feedback(field, default = nil)
             fields = Array(field)
-            fields.any? { |f| form_error? f } ? fields.map { |f| form_errors f }.flatten.join("<br />") : default
+            (fields.any? { |f| form_error? f }) ? fields.map { |f| form_errors f }.flatten.join("<br />") : default
           end
         end
 

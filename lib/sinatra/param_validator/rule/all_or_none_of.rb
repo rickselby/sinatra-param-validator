@@ -12,7 +12,7 @@ module Sinatra
         def validate
           return if count.zero? || count == @fields.count
 
-          @errors.push "All or none of [#{@fields.join ', '}] must be provided"
+          @errors.push "All or none of [#{@fields.join ", "}] must be provided"
         end
       end
     end
