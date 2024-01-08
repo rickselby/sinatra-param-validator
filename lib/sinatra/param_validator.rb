@@ -34,7 +34,7 @@ module Sinatra
         validator_conditional app, :validate, Sinatra::ParamValidator::Validator
 
         Sinatra::ParamValidator::Validator.validators.each do |validator|
-          validator_conditional app, :"validate_#{snake_case(validator.to_s.split('::').last)}", validator
+          validator_conditional app, :"validate_#{snake_case(validator.to_s.split("::").last)}", validator
         end
       end
 

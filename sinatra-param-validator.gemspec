@@ -25,5 +25,5 @@ Gem::Specification.new do |spec|
       (f == __FILE__) || f.match(%r{\A(?:spec/|\.git|appveyor)})
     end
   end
-  spec.require_paths = ["lib"]
+  spec.require_paths = %w[lib]
 end

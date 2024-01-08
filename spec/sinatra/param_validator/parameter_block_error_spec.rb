@@ -24,16 +24,16 @@ describe Sinatra::ParamValidator::Parameter do
   it "runs the code in the block if the validator passes" do
     expect { post "/", { val: 20 } }.to raise_error(
       an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
-        having_attributes(errors: { val: ["This was raised"] })
-      )
+        having_attributes(errors: { val: ["This was raised"] }),
+      ),
     )
   end
 
   it "does not run the code in the block if the validator fails" do
     expect { post "/", { val: "foo" } }.to raise_error(
       an_instance_of(Sinatra::ParamValidator::ValidationFailedError).and(
-        having_attributes(errors: { val: ["The validation failed"] })
-      )
+        having_attributes(errors: { val: ["The validation failed"] }),
+      ),
     )
   end
 end
