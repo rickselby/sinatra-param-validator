@@ -128,7 +128,6 @@ DEPENDENCIES
   rake (~> 13.1)
   rspec (~> 3.12)
   rubocop-rickselby (~> 0.9)
-  rubocop-rspec (~> 2.0)
   sinatra-contrib (~> 3.2)
   sinatra-param-validator!
 
