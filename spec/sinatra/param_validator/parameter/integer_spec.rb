@@ -5,9 +5,9 @@ require_relative "shared_examples"
 RSpec.describe Sinatra::ParamValidator::Parameter::Integer do
   subject(:valid) { klass.valid? }
 
-  let(:klass) { described_class.new(value, **options) }
-  let(:options) { {} }
-  let(:value) { "123" }
+  let(:klass)   { described_class.new(value, **options) }
+  let(:options) { {}                                    }
+  let(:value)   { "123"                                 }
 
   describe "coerce" do
     subject(:coerce) { klass.coerced }
