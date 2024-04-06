@@ -81,7 +81,7 @@ GEM
       loofah (~> 2.21)
       nokogiri (~> 1.14)
     rainbow (3.1.1)
-    rake (13.1.0)
+    rake (13.2.1)
     regexp_parser (2.9.0)
     rexml (3.2.6)
     rspec (3.13.0)
@@ -168,7 +168,7 @@ PLATFORMS
 
 DEPENDENCIES
   rack-test (~> 2.1)
-  rake (~> 13.1)
+  rake (~> 13.2)
   rspec (~> 3.13)
   rubocop-rickselby (~> 0.25)
   sinatra-contrib (~> 4.0)
