@@ -44,7 +44,7 @@ module Sinatra
 
         def run(context)
           @original_params = context.params
-          super(context)
+          super
         end
 
         private
