@@ -175,4 +175,4 @@ DEPENDENCIES
   sinatra-param-validator!
 
 BUNDLED WITH
-   2.5.4
+   2.5.18
