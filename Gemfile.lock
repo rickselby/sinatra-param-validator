@@ -183,4 +183,4 @@ DEPENDENCIES
   sinatra-param-validator!
 
 BUNDLED WITH
-   2.5.18
+   2.5.23
