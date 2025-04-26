@@ -15,9 +15,9 @@ module Sinatra
         raise ValidationFailedError, @errors
       end
 
-      def run(context, *args)
+      def run(context, *)
         context.instance_variable_set(:@_validator_errors, {})
-        context.instance_exec(*args, &@definition)
+        context.instance_exec(*, &@definition)
         @errors = context.remove_instance_variable(:@_validator_errors)
       rescue InvalidParameterError => e
         @errors[:general] = [e.message]
