@@ -1,5 +1,7 @@
 ## [Unreleased]
 
+## [0.18.0] - 2025-04-26
+
 - Drop support for rubies < 3.2
 
 ## [0.17.0] - 2022-07-19
