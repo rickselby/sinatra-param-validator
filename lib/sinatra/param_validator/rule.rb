@@ -12,10 +12,10 @@ module Sinatra
       class << self
         include Camelize
 
-        def new(name, params, *args, **kwargs)
+        def new(name, params, *, **)
           name = camelize(name) if name.is_a? Symbol
           klass = Object.const_get "Sinatra::ParamValidator::Rule::#{name}"
-          klass.new(params, *args, **kwargs)
+          klass.new(params, *, **)
         end
       end
     end

@@ -20,8 +20,8 @@ module Sinatra
       settings.validator_definitions.add(identifier, definition)
     end
 
-    def vi(identifier, *args)
-      Identifier.new(identifier, *args)
+    def vi(identifier, *)
+      Identifier.new(identifier, *)
     end
 
     class << self
