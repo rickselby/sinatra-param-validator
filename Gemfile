@@ -6,7 +6,7 @@ source "https://rubygems.org"
 gemspec
 
 gem "rack-test", "~> 2.2"
-gem "rake", "~> 13.2"
+gem "rake", "~> 13.3"
 gem "rspec", "~> 3.13"
 gem "rubocop-rickselby", "~> 0.57"
 gem "sinatra-contrib", "~> 4.1"
