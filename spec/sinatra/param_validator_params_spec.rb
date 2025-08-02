@@ -5,6 +5,7 @@ require "sinatra/test_helpers"
 # Test the use of params later in the validator block
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
+
   before do
     klass = described_class
     mock_app do

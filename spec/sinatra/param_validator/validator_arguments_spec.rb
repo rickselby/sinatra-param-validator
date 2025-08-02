@@ -5,6 +5,7 @@ require "sinatra/test_helpers"
 # Test that a custom message gets passed through to the exception
 describe Sinatra::ParamValidator::Validator do
   include Sinatra::TestHelpers
+
   before do
     local_min = min
     mock_app do

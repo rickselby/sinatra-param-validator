@@ -5,6 +5,7 @@ require "sinatra/test_helpers"
 # Test that an invalid coercion raises a validation error
 describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
+
   before do
     mock_app do
       register Sinatra::ParamValidator

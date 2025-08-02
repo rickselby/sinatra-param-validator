@@ -5,6 +5,7 @@ require "sinatra/test_helpers"
 # Test we can use validations within blocks
 describe Sinatra::ParamValidator::Parameter do
   include Sinatra::TestHelpers
+
   before do
     mock_app do
       register Sinatra::ParamValidator

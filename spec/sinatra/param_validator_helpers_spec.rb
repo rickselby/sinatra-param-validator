@@ -11,6 +11,7 @@ end
 # Test the use of the route condition 'validate' to run a validator
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
+
   before do
     klass = described_class
     mock_app do

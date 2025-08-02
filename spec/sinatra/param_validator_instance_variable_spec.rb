@@ -6,6 +6,7 @@ require "sinatra/test_helpers"
 # rubocop:disable RSpec/InstanceVariable
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
+
   before do
     klass = described_class
     mock_app do
