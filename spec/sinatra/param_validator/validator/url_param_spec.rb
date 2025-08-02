@@ -4,6 +4,7 @@ require "sinatra/test_helpers"
 
 describe Sinatra::ParamValidator::Validator::UrlParam do
   include Sinatra::TestHelpers
+
   before do
     mock_app do
       register Sinatra::ParamValidator
