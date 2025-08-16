@@ -18,7 +18,7 @@ jobs:
           - '3.3'
           - '3.4'
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
           ruby-version: ${{ matrix.ruby }}
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     name: Rubocop
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
