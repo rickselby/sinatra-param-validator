@@ -3,7 +3,7 @@
 require "sinatra/test_helpers"
 
 # Test that instance variables can be passed around
-# rubocop:disable RSpec/InstanceVariable
+# rubocop:disable-next RSpec/InstanceVariable
 describe Sinatra::ParamValidator do
   include Sinatra::TestHelpers
 
@@ -30,4 +30,3 @@ describe Sinatra::ParamValidator do
     expect(post("/").body).to eq "foo"
   end
 end
-# rubocop:enable RSpec/InstanceVariable
